@@ -8,8 +8,8 @@ from typing import List
 
 import nonebot
 import ujson as json
-from configs.path_config import IMAGE_PATH
 from nonebot.adapters.onebot.v11 import Bot, Message
+from configs.path_config import IMAGE_PATH
 from src.utils.function import image
 from src.utils.http_utils import AsyncHttpx
 from src.utils.image_utils import BuildImage
