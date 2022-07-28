@@ -1,5 +1,4 @@
-
-<a href="https://sm.ms/image/ijPWQzoX1rCVOme" target="_blank"><img src="https://s2.loli.net/2022/07/28/ijPWQzoX1rCVOme.jpg" ></a>
+<div align=center><img width="320" height="320" src="https://s2.loli.net/2022/07/28/ijPWQzoX1rCVOme.jpg"/></div>
 ![maven](https://img.shields.io/badge/python-3.10%2B-blue)
 ![maven](https://img.shields.io/badge/nonebot-2.0.0b4-yellow)
  ![maven](https://img.shields.io/badge/go--cqhttp-1.0.0-red)
