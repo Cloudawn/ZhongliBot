@@ -15,14 +15,14 @@
  
  
 # 简单搭建教程
-1. 新建文件夹，作为钟离先生的家（这也是bot根目录）。
-2. 下载[gocqhttp](https://docs.go-cqhttp.org/)并运行。
-3. 在先生的家（bot根目录）执行``git clone https://github.com/Cloudawn/ZhongliBot.git``。若克隆失败，可挂一个梯子。或者下载源码手动解压。
-4. 下载依赖(推荐使用虚拟环境)：在bot根目录执行``pip install -r requirements.txt``，然后执行``playwright install chromium``。
+1. 新建文件夹，作为钟离先生的家；例如新建文件夹``WangShengTang``。
+2. 下载[gocqhttp](https://docs.go-cqhttp.org/)并运行，gocq也可放在你新建的文件夹``WangShengTang``内。
+3. 在``WangShengTang``执行``git clone https://github.com/Cloudawn/ZhongliBot.git``。若克隆失败，可挂一个梯子，或者下载源码手动解压（需要将文件夹名``ZhongliBot_main``更改为``ZhongliBot``）。
+4. 进入文件夹``ZhongliBot``，执行``pip install -r requirements.txt``，然后执行``playwright install chromium``；推荐使用虚拟环境。
 5. 下载[SQLite](https://www.sqlite.org/index.html)作为数据库。
 6. 在``config_default.yml``文件内填写好bot配置，然后保存退出，config_default.yml重命名为``config.yml``。
 7. ``db_default``文件夹重命名为``db``。
-8. 一切准备就绪，在bot根目录执行``nb run``，提示连接成功后，先生就跑起来啦！ <br>
+8. 一切准备就绪，在bot根目录``ZhongliBot``执行``nb run``，提示连接成功后，先生就跑起来啦！ <br>
  
 
 # 已实现的功能
