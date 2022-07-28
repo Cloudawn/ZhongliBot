@@ -9,7 +9,7 @@
  ****
  
  ## 关于
-  钟离先生他真的，我哭死。因为太喜欢钟离了，决定写一个钟离bot吃桃。
+  钟离先生他真的，我哭死。因为太喜欢钟离了，决定写一个钟离bot吃桃。<br>
  **本项目测试中...为测试自动更新插件匆匆开源，略微粗糙。**<br>
  **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<BR>
  
