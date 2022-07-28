@@ -3,10 +3,7 @@ from nonebot.adapters.onebot.v11.event import GroupMessageEvent
 from nonebot.adapters.onebot.v11.permission import GROUP
 from src.utils.log import logger
 from src.utils.scheduler import scheduler
-
 from . import data_source as source
-
-
 
 sign = on_regex(r"^签到$", permission=GROUP, priority=5, block=True)
 

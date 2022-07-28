@@ -320,3 +320,20 @@ class UserAttr(Model):
             "def": v.Def
         }
         return data
+
+    @classmethod
+    async def change_version(cls, user_id: int):
+        """
+        更改神之眼属性
+
+        参数:
+            * user_id (int): QQ号
+
+        返回值:
+            无返回值
+        """
+        v, _ = await cls.get_or_creat(user_id=user_id)
+        version = random.choice(['雷','火','风','岩','水','冰','草'])
+        v.Version = version
+        await v.save(update_fields=["Version"])
+        return version
