@@ -14,16 +14,16 @@ bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)�
 **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<BR>
 
 # 简单搭建教程
-```
 1. 新建文件夹，作为钟离先生的家（这也是bot根目录）。
 2. 下载[gocqhttp](https://docs.go-cqhttp.org/)并运行。
-3. 在先生的家（bot根目录）执行**git clone https://github.com/Cloudawn/ZhongliBot.git**。若克隆失败，可挂一个梯子。或者下载源码手动解压。
-4. 下载依赖(推荐使用虚拟环境)：在bot根目录执行**pip install -r requirements.txt**，然后执行**playwright install chromium**。
+3. 在先生的家（bot根目录）执行``git clone https://github.com/Cloudawn/ZhongliBot.git``。若克隆失败，可挂一个梯子。或者下载源码手动解压。
+4. 下载依赖(推荐使用虚拟环境)：在bot根目录执行``pip install -r requirements.txt``，然后执行``playwright install chromium``。
 5. 下载[SQLite](https://www.sqlite.org/index.html)作为数据库。
-6. 在**config_default.yml**文件内填写好bot配置，然后保存退出，config_default.yml重命名为**config.yml**。
-7.   **db_default**文件夹重命名为**db**。
-8. 一切准备就绪，在bot根目录执行**nb run**，提示连接成功后，先生就跑起来啦！
-```
+6. 在``config_default.yml``文件内填写好bot配置，然后保存退出，config_default.yml重命名为``config.yml``。
+7. ``db_default``文件夹重命名为``db``。
+8. 一切准备就绪，在bot根目录执行``nb run``，提示连接成功后，先生就跑起来啦！
+ 
+ 
 # 已实现的功能
 - [x] 使用本地词库进行日常聊天
 - [x] 以好感度作为分级的~~吃桃~~日常互动；如``亲亲``，``抱抱``，``贴贴``，``摸摸``
