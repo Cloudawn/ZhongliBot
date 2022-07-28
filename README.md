@@ -11,7 +11,7 @@
  ## 关于
   钟离先生他真的，我哭死。因为太喜欢钟离了，决定写一个钟离bot吃桃。<br>
  **本项目测试中...为测试自动更新插件匆匆开源，略微粗糙。**<br>
- **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<BR>
+ **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<br><br>
  
  
 # 简单搭建教程
@@ -24,7 +24,7 @@
 7. ``db_default``文件夹重命名为``db``。
 8. 一切准备就绪，在bot根目录执行``nb run``，提示连接成功后，先生就跑起来啦！
  
- 
+ <br>
 # 已实现的功能
 - [x] 使用本地词库进行日常聊天
 - [x] 以好感度作为分级的~~吃桃~~日常互动；如``亲亲``，``抱抱``，``贴贴``，``摸摸``
@@ -38,7 +38,7 @@
 - [x] 色色禁言——不可以不敬仙师！
 - [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] ``钟离讲故事``，随机发送一段文字或语音故事
-
+<br>
 # TODO
 - [ ] ``我的面板``变为图片形式
 - [ ] 增加全局开关和插件管理系统
@@ -47,7 +47,7 @@
 - [ ] ``俄罗斯轮盘``加入1v1对战模式
 - [ ] 增加``礼物背包``，用于存放钟离赠送的礼物
 - [ ] 记录群成员生日，并在当天祝福与赠礼
- 
+ <br>
  ## 碎碎念
  作者是一个一般路过同人女，技术较菜，正在学习中，目标是创作一个生动的钟离先生。 资源为什么不走网络呢...啊，原来是害怕出现雷点cp啊。同人女，恐怖如斯。<br>
 bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>
