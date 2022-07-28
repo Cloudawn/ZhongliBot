@@ -15,6 +15,9 @@ class Config():
     admin_number: str
     """管理员账户"""
 
+    main_group: str
+    """主群群号"""
+
     def __new__(cls, *args, **kwargs):
         '''单例'''
         if not hasattr(cls, '_instance'):

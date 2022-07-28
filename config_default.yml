@@ -13,6 +13,8 @@ nickname: # 这里填钟离别名
 admin_number: '' # 这里填主人QQ
 # 项目配置文件
 
+main_group: '' # 主群群号
+
 # 数据站设置
 jx3api:
   # ws链接地址
