@@ -1,6 +1,8 @@
 # bingshi
  
-本项目测试中...
+本项目测试中...<br>
+技术较菜，站在大佬的肩上学习。<br>
+bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>
 
 钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。<BR>
 
