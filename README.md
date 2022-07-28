@@ -11,7 +11,7 @@
  ## 关于
   钟离先生他真的，我哭死。因为太喜欢钟离了，决定写一个钟离bot吃桃。<br>
  **本项目测试中...为测试自动更新插件匆匆开源，略微粗糙。**<br>
- **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<br><br>
+ **钟离部分文案（包括故事、早晚安、进群欢迎）、图片资源来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)、 [@误曲公子可顾](https://wuqugongzikegu.lofter.com)、[@丙实](https://tuzimulang.lofter.com)、[@猫猫哭哭](https://moraxmywife.lofter.com)、[@品茗人](https://pinmingren.lofter.com/)、[@钟狐](https://huidanqing464.lofter.com)，禁止抄袭或无授权更改引用。**<br><br>
  
  
 # 简单搭建教程
@@ -51,4 +51,4 @@
 
  ## 碎碎念
  作者是一个一般路过同人女，技术较菜，正在学习中，目标是创作一个生动的钟离先生。 资源为什么不走网络呢...啊，原来是害怕出现雷点cp啊。同人女，恐怖如斯。<br>
-bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>
+bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>另外感谢[@Slock](https://github.com/Sclock)妈咪，多次被我的代码气出高血压，但仍未放弃治疗我，非常感动。
