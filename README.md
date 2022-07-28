@@ -2,13 +2,13 @@
  
 本项目测试中...
 
-钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。
+钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。<BR>
 
-简易搭建教程如下：
-框架：``gocqhttp+nonebot2``
+简易搭建教程如下：<BR>
+框架：``gocqhttp+nonebot2``<BR>
 环境要求：``python 3.10``
 
-1. 下载[gocqhttp]（https://docs.go-cqhttp.org/）
+1. 下载[gocqhttp](https://docs.go-cqhttp.org/)
 2. 新建文件夹，作为钟离先生的家（这也是bot根目录）
 3. 在先生的家（bot根目录）执行``git clone https://github.com/Cloudawn/ZhongliBot.git``
 若克隆失败，可挂一个支持外网访问的工具。或者下载源码手动解压。
