@@ -22,6 +22,8 @@ from .interaction import momo, momo_me, repeat_users, zl_eat
 from .nickname import get_nickname, set_nickname
 from .title import set_title
 
+# 钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。
+
 pic_root_path = f"{config.bot_path}resources/image"
 face_path = f"{config.bot_path}resources/image/zlface"
 

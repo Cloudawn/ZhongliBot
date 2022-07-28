@@ -30,10 +30,12 @@ from .DailyChat import (I_pain, calm_down, comfort, dance, go_with_me, help_me,
                         zl_sing)
 from .LoveDate import date_with_zl, hand_in_hand, hug, kiss, treat_user
 from .Q_A import (I_want, answer_are_you, answer_be_your, answer_can_u,
-                  answer_have, answer_judge, answer_like, answer_MA, answer_think,
-                  answer_will_u)
+                  answer_have, answer_judge, answer_like, answer_MA,
+                  answer_think, answer_will_u)
 from .SpecialDay import (BegAttention, Lantern_Ftvl, ToUser_HappyBirthday,
                          Tozl_HappyBirthday, ZhuYue_Ftvl)
+
+# 钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。
 
 BotNickname = config.nickname  # 是一个列表
 NICKNAME = "钟离"
@@ -73,11 +75,15 @@ async def AllNickname_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
         case _ if re.match(r'(.*)(石珀|岩石之心)(.*)', event_msg, re.U):
             send_msg = Message("石珀乃极纯的岩元素凝成的珍稀晶石，常与其他矿物伴生，通体金光，光彩夺目。")
         case _ if re.match(r'(.*夜泊石.*)', event_msg, re.U):
-            send_msg = Message("夜泊石乃稀有的特质矿石，在静谧的暗夜里会幽幽地发光。据称是天地间奔流的元素在异变中凝聚成的珍奇宝石。")
+            send_msg = Message(
+                "夜泊石乃稀有的特质矿石，在静谧的暗夜里会幽幽地发光。据称是天地间奔流的元素在异变中凝聚成的珍奇宝石。")
         case[*list_str] if "🤤" in join_list(list_str) or "🥵" in join_list(list_str):
             send_msg = random.choice(dailyChat_dict.流汗())
         case _ if re.match(r'(.*)(喊我老公|喊我老婆)(.*)', event_msg, re.U):
             send_msg = random.choice(dailyChat_dict.call_wife())
+        case _ if re.match(r'(.*)(成精)(.*)', event_msg, re.U):
+            send_msg = Message(random.choice(
+                ['确实。', '说笑了', '没有的事，怎么会呢。', '不无可能。']))
         case _ if re.match(r'(^早$|早啊)|((.*)(早上好|早安|日安|晨愉|上午好)(.*))', event_msg, re.U):
             send_msg = await say_morning(onMsg_AllNickname, event)
         case [*list_str] if "负责" in join_list(list_str):
@@ -125,7 +131,7 @@ async def AllNickname_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
             send_msg = await I_pain(onMsg_AllNickname, event)
         case _ if re.match(r'(.*)什么意思(.*)', event_msg, re.M | re.I):
             send_msg = random.choice(dailyChat_dict.什么意思())
-        case _ if re.match(r'(.*我不(.*)(喜欢|心悦|爱)|.*我恨)你(.*)', event_msg, re.U):
+        case _ if re.match(r'(.*我不(.*)(喜欢|心悦|爱)|.*我(恨|讨厌))你(.*)', event_msg, re.U):
             send_msg = Message(random.choice(dailyChat_dict.讨厌先生()))
         case _ if re.match(r'(.*)(不喜欢|讨厌)(.*)(什么|哪|谁)(.*)', event_msg, re.U):
             send_msg = Message(MessageSegment.record(
@@ -235,10 +241,11 @@ async def AllNickname_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
         case _ if re.match(r'，?你?(真|好|太|实在|这么|如此|有点|很|变|当然)(.*)(好看|美|帅|漂亮)(.*)', event_msg, re.U):
             send_msg = Message(random.choice(dailyChat_dict.beautiful()))
         case _ if re.match(r'，?你?(真|好|太|实在|这么|如此|有点|很|变|当然)(.*辣.*)', event_msg, re.U):
-            send_msg = Message(random.choice(["辣？","辣...？应该如何理解？","非常新颖的形容，有趣。","哦？"]))
+            send_msg = Message(random.choice(
+                ["辣？", "辣...？应该如何理解？", "非常新颖的形容，有趣。", "哦？"]))
         case _ if re.match(r'(.*)(真|好|太|实在|这么|如此|有点|很|当然)(.*)(乖|温柔|温油)(.*)', event_msg, re.U):
             send_msg = Message(random.choice([f"[CQ:image,file=file:///{face_path}/20220322_231830.jpg]",
-            f"[CQ:image,file=file:///{face_path}/乖.jpg]"]))
+                                              f"[CQ:image,file=file:///{face_path}/乖.jpg]"]))
         case _ if re.match(r'(.*)(我(知道).*)|(知道了.*)', event_msg, re.U):
             raise FinishedException
         case _ if re.match(r'(.*)(知道.*|了解.*)(什么.*|哪些.*)', event_msg, re.U):
