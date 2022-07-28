@@ -1,0 +1,118 @@
+bot_path: "" # 这里填bot所在文件路径，下列两行为示例：
+
+# bot_path: "C:/WangShengTang/bingshi/bingshi/"        # 这是Windows路径
+# bot_path: "/home/abing/WangShengTang/zlbot/zlbot/"   # 这是Linux路径
+
+nickname: # 这里填钟离别名
+  - "钟离"
+  - "帝君"
+  - "先生"
+  - "离离"
+  - "钟离先生"
+
+admin_number: '' # 这里填主人QQ
+# 项目配置文件
+
+# 数据站设置
+jx3api:
+  # ws链接地址
+  ws_path: wss://socket.nicemoe.cn
+  # ws的token授权，关联ws服务器推送消息类型
+  ws_token: ~
+  # 主站地址
+  jx3_url:  https://www.jx3api.com
+  # 主站token，不填将不能访问带ticket的接口
+  jx3_token: ~
+
+# 邮件通知配置
+mail:
+  # 服务器地址
+  host: ~
+  # 端口号
+  pord: ~
+  # 用户名
+  user: ~
+  # 密码，可能是授权码
+  pass: ~
+  # 发送方
+  sender: ~
+  # 接收方
+  receiver: ~
+
+# 聊天配置
+nlp:
+  # 腾讯云API的secretId，开通地址：https://console.cloud.tencent.com/cam/capi
+  secretId: ~
+  secretKey: ~
+
+# 语音合成配置
+voice:
+  # 阿里云的语音接口，开通地址：https://usercenter.console.aliyun.com/
+  appkey: ~
+  access: ~
+  secret: ~
+  # 发言人，文档：https://help.aliyun.com/knowledge_detail/84435.html?spm=a2c4g.11186631.2.1.67045663WlpL4n
+  voice: Aitong
+  # 编码格式，支持 PCM WAV MP3
+  format: mp3
+  # 采样率
+  sample_rate: 16000
+  # 音量，取值范围：0～100
+  volume: 50
+  # 语速，取值范围：-500～500
+  speech_rate: 0
+  # 音调，取值范围：-500～500
+  pitch_rate: 0
+
+# 天气插件设置
+weather:
+  # 和风天气apikey
+  api_key: ~
+  # api_key类型，普通版:0，个人开发版:1，商业版:2
+  api_type: 0
+
+# 默认设置
+default:
+  # 插件debug日志是否显示在控制台
+  logger_debug: true
+  # 每个群默认绑定服务器
+  server: 幽月轮
+  # 是否接收添加好友请求
+  access_firend: true
+  # 是否接收加群请求
+  access_group: true
+  # 机器人在每个群默认开启状态
+  robot_status: true
+  # 机器人自动插话默认活跃度
+  robot_active: 10
+  # 群默认欢迎开关
+  robot_welcome_status: true
+  # 默认机器人的欢迎语
+  robot_welcome: 欢迎。
+  # 群默认离开开关
+  robot_someone_left_status: true
+  # 默认成员离开说辞
+  robot_someone_left: 离开了……
+  # 群默认晚安开关
+  robot_goodnight_status: true
+  # 默认晚安说辞
+  robot_goodnight: 晚安
+  # 是否开启智能私聊，开启后私聊机器人会获得回复
+  private_chat: true
+
+# 路径设置
+path:
+  # 数据文件夹
+  data: resources
+  # 日志文件夹
+  info: log/info
+  debug: log/debug
+  error: log/error
+  # html模板文件路径
+  templates: ./template
+  # 欢迎消息存储图片路径
+  welcome: ./resources/image/welcome/
+  # 离群消息储存图片路径
+  someoneleft: ./resources/image/someoneleft/
+  # 晚安储存图片路径
+  goodnight: ./resources/image/goodnight/
