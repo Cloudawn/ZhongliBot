@@ -39,6 +39,8 @@
 - [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] ``钟离讲故事``，随机发送一段文字或语音故事
 - [x] ``钟离生草``，随机发送一张草元素含量丰富的图片
+- [x] ``旅途见闻``，随机发送一张原神图片；男角色居多
+- [x] 被辱骂后告状
 - [x] coc跑团骰，.rxdy，抄的[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)
 - [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] emoj合成，抄的[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)
