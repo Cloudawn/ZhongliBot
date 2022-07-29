@@ -49,7 +49,7 @@ async def _(bot: Bot, event: MessageEvent, matcher: Matcher):
         case [*list_str] if "异梦溶媒" in join_list(list_str):
             send_msg = Message(
                 "曾经人们相信灵魂和记忆也是有其质料的。如果曾经有人梦到过天堂，醒来后取出了一朵花，那它应该就是由此构成的。异梦溶媒可以溶解回忆中取得的东西，并且将其变成另一种梦。")
-        case _ if re.match(r'(.*)(不(想|要)|帮我)?(上学|上班|上课|工作|作业)(.*)', event_msg, re.U):
+        case _ if re.match(r'(.*)我(.*)(不(想|要)|帮我)(.*)(上学|上班|上课|工作|作业)(.*)', event_msg, re.U):
             send_msg = Message(random.choice(dailyChat_dict.我不上班()))
         case _ if re.match(r'(.*)(摩拉克斯|岩王帝君)(.*)', event_msg, re.U):
             send_msg = Message(random.choice(["岩之神，摩拉克斯......你曾见过他？", "", ""]))
