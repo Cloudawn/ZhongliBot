@@ -39,7 +39,12 @@
 - [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] ``钟离讲故事``，随机发送一段文字或语音故事
 - [x] ``钟离生草``，随机发送一张草元素含量丰富的图片
-
+- [x] ``旅途见闻``，随机发送一张原神图片；男角色居多
+- [x] 被辱骂后告状
+- [x] coc跑团骰，.rxdy，抄的[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)
+- [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
+- [x] emoj合成，抄的[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)
+- [x] 多语种翻译，来自[@bingyue](https://github.com/bingqiu456)
 
 # TODO
 - [ ] ``我的面板``变为图片形式
@@ -53,3 +58,11 @@
  ## 碎碎念
  作者是一个一般路过同人女，技术较菜，正在学习中，目标是创作一个生动的钟离先生。 资源为什么不走网络呢...啊，原来是害怕出现雷点cp啊。同人女，恐怖如斯。<br>
 bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>另外感谢[@Slock](https://github.com/Sclock)妈咪，多次被我的代码气出高血压，但仍未放弃治疗我，非常感动。
+
+# 致谢
+[nonebot2: https://github.com/nonebot/nonebot2](https://github.com/nonebot/nonebot2)<br>
+[真寻bot: https://github.com/nonebot/nonebot2](https://github.com/HibiKier/zhenxun_bot)<br>
+[mini_jx3_bot: https://github.com/nonebot/nonebot2](https://github.com/JustUndertaker/mini_jx3_bot)<br>
+[abrahum/nonebot_plugin_cocdicer: https://github.com/abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)<br>
+[kexue-z/nonebot-plugin-word-bank2: https://github.com/kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)<br>
+[noneplugin/nonebot-plugin-emojimix: https://github.com/noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)<br>
