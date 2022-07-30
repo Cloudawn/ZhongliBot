@@ -30,8 +30,12 @@ async def ban_users(bot: Bot, event: GroupMessageEvent, onMsg_AllNickname: Type[
     await onMsg_AllNickname.finish(MessageSegment.image(f"file:///{img_path}/{random.choice(img_list)}") + f"{random.choice(warning_list)}\n——好感度{change_value}")
 
 
-async def anti_abuse(bot, event,  abuse):
-    # abuse_words = abuse.MessageEvent_to_text()
-    await bot.send_group_msg(
-        group_id=config.main_group,
+async def anti_abuse(bot: Bot, event,  abuse):
+    await bot.send_private_msg(
+        user_id=config.admin_number,
         message=f"有人对钟离说 {abuse}\nfrom 群{event.group_id}，用户QQ：{event.user_id}")
+    # await bot.send_group_msg(
+    #     group_id=config.main_group,
+    #     message=f"有人对钟离说 {abuse}\nfrom 群{event.group_id}，用户QQ：{event.user_id}")
+
+# 若担心钟离bot发送私聊消息被风控，可注释34~37行，启用38~40行
