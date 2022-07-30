@@ -45,6 +45,7 @@
 - [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] emoj合成，抄的[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)
 - [x] 多语种翻译，来自[@bingyue](https://github.com/bingqiu456)
+- [x] 疫情查询，来自[@bingyue](https://github.com/bingqiu456)
 
 # TODO
 - [ ] ``我的面板``变为图片形式
