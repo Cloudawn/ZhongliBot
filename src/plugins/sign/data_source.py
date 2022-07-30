@@ -124,22 +124,7 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
         return msg_txt
 
     zl_gold = (await UserInfo.get_userInfo(user_id=event.self_id))['all_gold']
-    if zl_gold <= 100000:
-        # 钟离经济危机，发不出太多钱了
-        data = await UserInfo.sign_in(
-            user_id=user_id,
-            # group_id=group_id,
-            lucky_min=LUCKY_MIN,
-            lucky_max=LUCKY_MAX,
-            friendly_add=FRIENDLY_ADD,
-            gold_base=50,
-            lucky_gold=LUCKY_GOLD)
-        msg_txt = f"咳咳，囊中羞涩，近日原石......钟某难以给出太多，还请{nickname}见谅。"
-        msg_txt += f'\n——原石+{data.get("today_gold")}（总{data.get("all_gold")}）'
-        return msg_txt
-    else:
-        # 设置签到
-        data = await UserInfo.sign_in(
+    data = await UserInfo.sign_in(
             user_id=user_id,
             # group_id=group_id,
             lucky_min=LUCKY_MIN,
@@ -148,13 +133,14 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
             gold_base=GOLD_BASE,
             lucky_gold=LUCKY_GOLD)
 
-        await UserAttr.add_exp(user_id=user_id)
+    await UserAttr.add_exp(user_id=user_id)
 
-        msg_txt = get_msg()
-        msg_txt += f'\n——原石+{data.get("today_gold")}（总{data.get("all_gold")}）'
-        msg_txt = Replace(msg_txt).replace("旅者", f"{nickname}")
-        msg += msg_head+MessageSegment.text(msg_txt)
-        return msg
+    msg_txt = get_msg()
+    msg_txt += f'\n原石+{data.get("today_gold")}（总{data.get("all_gold")}'
+    # msg_txt += f'\n摩拉+{data.get("today_mora")}（总{data.get("mora")}）'
+    msg_txt = Replace(msg_txt).replace("旅者", f"{nickname}")
+    msg += msg_head+MessageSegment.text(msg_txt)
+    return msg
 
 
 async def reset_sign_nums():

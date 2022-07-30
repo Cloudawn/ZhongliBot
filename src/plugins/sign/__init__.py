@@ -7,7 +7,6 @@ from . import data_source as source
 
 sign = on_regex(r"^签到$", permission=GROUP, priority=5, block=True)
 
-
 @sign.handle()
 async def _(event: GroupMessageEvent):
     '''签到系统'''
