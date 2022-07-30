@@ -8,7 +8,18 @@ from typing import Dict, List, Tuple, Union
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 from src.utils.log import logger
 
-# MONEY_GROUP: Dict[str, Tuple[bool, int]] = {}
+
+
+class selfDict(dict):
+    def get_or_set(self, key: int|str, value: int | dict):
+        if key not in self:
+            self[key] = value
+        return self[key]
+
+
+GAMBLER = selfDict()
+GAMBLER_GROUP = selfDict()
+GAMBLER_SELF = selfDict()
 
 die_txt = Message(random.choice(
     [
@@ -49,7 +60,7 @@ def gun(bullet_max: int = 1):
         gun_clip[bullet_index] = 1
         choice_list.append(bullet_index)
     # # 随机排列
-    print(gun_clip)
+    logger.debug(f'子弹排列是{gun_clip}')
     # 开枪
 
     for index, bullet in enumerate(gun_clip):
@@ -72,16 +83,13 @@ def gent_menu(x: int) -> List[int]:
     return [int(i * x * log(x)) for i in magn_list]
 
 
-# def gun(bullet_max: int):
-#     assert 1 <= bullet_max <= 6, "子弹数量错误"
-#     # 组合列表
-#     gun_clip = [0] * (6-bullet_max) + [1] * bullet_max
-#     # 随机排列
-#     shuffle(gun_clip)
-#     # 开枪
-#     print("子弹序列：", gun_clip)
-#     for index, bullet in enumerate(gun_clip):
-#         yield (bullet != 1, index)
+def check_key_exist(dict: dict, key: list, value: list):
+    if len(key) == len(value):
+        for i in key:
+            if dict.get(i) is None:
+                dict[i] = value[i]
+    else:
+        logger.error("check_key_exist参数错误，key和value长度不对等")
 
 
 class PluginsLock:
