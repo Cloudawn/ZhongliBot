@@ -101,8 +101,8 @@ class UserInfo(Model):
         today_gold = gold_base+lucky_gold*today_lucky
         record.gold += today_gold
         all_gold = record.gold
-        all_mora = record.mora
         today_mora = random.randint(1000, 2000)
+        all_mora = record.mora
         record.mora += today_mora
         # 计算好友度
         today_friendy = today_lucky*friendly_add
