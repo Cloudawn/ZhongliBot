@@ -263,7 +263,7 @@ class UserInfo(Model):
         """
         v, _ = await cls.get_or_creat(user_id=user_id)
         v.last_date_sign = date.today()
-        friendly = random.randint(1, 10)
+        friendly = random.randint(10, 20)  # 删了一次数据，每日获取高感度增加，作为补偿
         v.friendly += friendly
         await v.save(update_fields=["last_date_sign", "friendly"])
         await cls.change_frendly_lev(user_id)
