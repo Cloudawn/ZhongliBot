@@ -104,10 +104,11 @@ async def _(bot: Bot, event: MessageEvent):
         user_id = event.user_id
     data_attr = await UserInfo.get_userInfo(user_id)
     gold = data_attr["all_gold"]
+    mora = data_attr["all_mora"]
     all_friendly = data_attr["all_friendly"]
     friendly_lev = data_attr["friendly_lev"]
     max_friendly = data_attr["max_friendly"]
-    msg = f"原石：{gold}\n好感度：{all_friendly}/{max_friendly}\n好感等级：{friendly_lev}"
+    msg = f"原石：{gold}\n摩拉：{mora}\n好感度：{all_friendly}/{max_friendly}\n好感等级：{friendly_lev}"
     await MyInfo.finish(MessageSegment.reply(event.message_id)+(msg))
 
 
@@ -121,8 +122,10 @@ async def _(bot: Bot, event: MessageEvent, matcher: Matcher):
         user_id = user_id[0]
     else:
         user_id = event.user_id
-    gold = (await UserInfo.get_userInfo(event.self_id))["all_gold"]
-    msg = f"钟离的原石：{gold}"
+    data = (await UserInfo.get_userInfo(event.self_id))
+    gold = data["all_gold"]
+    mora = data["all_mora"]
+    msg = f"钟离的原石：{gold}\n钟离的摩拉：{mora}"
     await MyInfo.finish(MessageSegment.reply(event.message_id)+(msg))
 
 

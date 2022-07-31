@@ -20,6 +20,8 @@ class UserInfo(Model):
     '''用户昵称'''
     gold = fields.IntField(default=0)
     '''用户原石'''
+    mora = fields.IntField(default=0)
+    '''用户摩拉'''
     friendly = fields.IntField(default=0)
     '''好感度'''
     friendly_max = fields.IntField(default=50)
@@ -94,10 +96,12 @@ class UserInfo(Model):
         # 计算运势
         today_lucky = random.randint(lucky_min, lucky_max)
         record.lucky = today_lucky
-        # 计算原石
+        # 计算原石和摩拉
         today_gold = gold_base+lucky_gold*today_lucky
         record.gold += today_gold
         all_gold = record.gold
+        today_mora = random.randint(1000, 2000)
+        record.mora += today_mora
         # 计算好友度
         today_friendy = today_lucky*friendly_add
         record.friendly += today_friendy
@@ -106,11 +110,12 @@ class UserInfo(Model):
         data = {
             "today_lucky": today_lucky,
             "today_gold": today_gold,
+            "today_mora": today_mora,
             "all_gold": all_gold,
             "all_friendly": record.friendly,
             "sign_times": record.sign_times
         }
-        await record.save(update_fields=["last_sign", "lucky", "gold", "friendly", "sign_times"])
+        await record.save(update_fields=["last_sign", "lucky", "gold", "friendly", "sign_times", "mora"])
         return data
 
     @classmethod
@@ -136,7 +141,7 @@ class UserInfo(Model):
 
     @classmethod
     async def get_userInfo(cls, user_id: int):
-        """查询用户详情，包含用户QQ，原石，好感，最大好感，好感等级，上次好感签到日期，昵称。
+        """查询用户详情，包含用户QQ，原石，摩拉，好感，最大好感，好感等级，上次好感签到日期，昵称。
 
         参数:
             user_id (int): QQ号
@@ -146,6 +151,7 @@ class UserInfo(Model):
             * ``"user_id"``：用户QQ
             * ``"nickname"``：用户昵称
             * ``"all_gold"``：总原石
+            * ``all_mora``: 总摩拉,
             * ``"all_friendly"``：总好感度
             * ``"friendly_lev"``：好感度等级
             * ``"max_friendly"``：当前好感等级最大好感度
@@ -162,6 +168,7 @@ class UserInfo(Model):
         data = {
             "user_id": v.user_id,
             "all_gold": v.gold,
+            "all_mora": v.mora,
             "all_friendly": v.friendly,
             "friendly_lev": v.friendly_lev,
             "max_friendly": v.friendly_max,
@@ -211,6 +218,21 @@ class UserInfo(Model):
         v, _ = await cls.get_or_creat(user_id=user_id)
         v.gold += change_value
         await v.save(update_fields=["gold"])
+
+    @classmethod
+    async def change_mora(cls, user_id: int, change_value: int):
+        """更改摩拉
+
+        参数:
+            * user_id (int): QQ号
+            * change_value(int): 摩拉改变的值，正数为加，负数为减
+
+        返回值:
+            无返回值
+        """
+        v, _ = await cls.get_or_creat(user_id=user_id)
+        v.mora += change_value
+        await v.save(update_fields=["mora"])
 
     @classmethod
     async def change_frendly(cls, user_id: int, change_value: int):

@@ -115,6 +115,7 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
     nickname = data_name.get("nickname")
     gold_for_zl = random.randint(500, 700)
     await UserInfo.change_gold(event.self_id, gold_for_zl)
+    await UserInfo.change_mora(event.self_id, gold_for_zl*1000)
 
     if random.randint(0, 100) >= 99:
         version = await UserAttr.change_version(event.user_id)
@@ -125,19 +126,19 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
 
     zl_gold = (await UserInfo.get_userInfo(user_id=event.self_id))['all_gold']
     data = await UserInfo.sign_in(
-            user_id=user_id,
-            # group_id=group_id,
-            lucky_min=LUCKY_MIN,
-            lucky_max=LUCKY_MAX,
-            friendly_add=FRIENDLY_ADD,
-            gold_base=GOLD_BASE,
-            lucky_gold=LUCKY_GOLD)
+        user_id=user_id,
+        # group_id=group_id,
+        lucky_min=LUCKY_MIN,
+        lucky_max=LUCKY_MAX,
+        friendly_add=FRIENDLY_ADD,
+        gold_base=GOLD_BASE,
+        lucky_gold=LUCKY_GOLD)
 
     await UserAttr.add_exp(user_id=user_id)
 
     msg_txt = get_msg()
-    msg_txt += f'\n原石+{data.get("today_gold")}（总{data.get("all_gold")}'
-    # msg_txt += f'\n摩拉+{data.get("today_mora")}（总{data.get("mora")}）'
+    msg_txt += f'\n原石+{data.get("today_gold")}（总{data.get("all_gold")}）'
+    msg_txt += f'\n摩拉+{data.get("today_mora")}（总{data.get("mora")}）'
     msg_txt = Replace(msg_txt).replace("旅者", f"{nickname}")
     msg += msg_head+MessageSegment.text(msg_txt)
     return msg

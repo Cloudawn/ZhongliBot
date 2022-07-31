@@ -2,7 +2,7 @@ from nonebot import export, on_regex
 from nonebot.adapters.onebot.v11.event import GroupMessageEvent
 from nonebot.adapters.onebot.v11.permission import GROUP
 from src.utils.log import logger
-from src.utils.scheduler import scheduler
+from src.utils.scheduler import the_scheduler
 from . import data_source as source
 
 sign = on_regex(r"^签到$", permission=GROUP, priority=5, block=True)
@@ -19,7 +19,7 @@ async def _(event: GroupMessageEvent):
     await sign.finish(msg)
 
 
-@scheduler.scheduled_job("cron", hour=0, minute=0)
+@the_scheduler.scheduled_job("cron", hour=0, minute=0)
 async def _():
     '''每天零点重置签到人数'''
     logger.info("正在重置签到人数")
