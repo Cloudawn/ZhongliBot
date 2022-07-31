@@ -5,6 +5,13 @@ from src.utils.log import logger
 from src.utils.scheduler import the_scheduler
 from . import data_source as source
 
+
+Export = export()
+Export.plugin_name = "每日签到"
+Export.plugin_command = "签到"
+Export.plugin_usage = "简单签到插件，获取原石、摩拉和升级经验值。"
+Export.default_status = True
+
 sign = on_regex(r"^签到$", permission=GROUP, priority=5, block=True)
 
 @sign.handle()

@@ -1,28 +1,33 @@
-import re
 import random
-from typing import Dict, List, Tuple
+import re
 from asyncio import sleep
-from nonebot.rule import to_me
+from typing import Dict, List, Tuple
 
-from nonebot import export, on_regex, on_command, on_message
-from nonebot.params import State, CommandArg, RegexGroup
-from nonebot.typing import T_State, T_Handler
+from nonebot import export, on_command, on_message, on_regex
+from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, Message,
+                                         MessageEvent)
+from nonebot.adapters.onebot.v11.permission import (GROUP_ADMIN, GROUP_OWNER,
+                                                    PRIVATE_FRIEND)
 from nonebot.matcher import Matcher
+from nonebot.params import CommandArg, RegexGroup, State
 from nonebot.permission import SUPERUSER
-from nonebot.adapters.onebot.v11 import Bot, Message, MessageEvent, GroupMessageEvent
-from nonebot.adapters.onebot.v11.permission import (
-    GROUP_ADMIN,
-    GROUP_OWNER,
-    PRIVATE_FRIEND,
-)
+from nonebot.rule import to_me
+from nonebot.typing import T_Handler, T_State
 
-from .util import to_json, parse_msg, save_and_convert_img
-from .models import MatchType
 from .data_source import word_bank as wb
+from .models import MatchType
+from .util import parse_msg, save_and_convert_img, to_json
 
 reply_type = "random"
 
 export().word_bank = wb
+
+
+Export = export()
+Export.plugin_name = "词库学习"
+Export.plugin_command = "(全局)(正则|模糊)问...答...；删除(全局)(正则|模糊)词条...；查询\s*((?:群|用户)*)\s*(\d*)\s*((?:全局)?(?:模糊|正则)?@?)\s*词库\s*(.*?)\s*；查询\s*((?:模糊|正则)?@?)\s*词库\s*(.*?)\s*"
+Export.plugin_usage = "教钟离说话，并储存在本地词库中，下次问及钟离便会如此回答"
+Export.default_status = True
 
 
 def get_session_id(event: MessageEvent) -> str:
@@ -33,7 +38,8 @@ def get_session_id(event: MessageEvent) -> str:
 
 
 def wb_match_rule(event: MessageEvent, state: T_State = State()) -> bool:
-    msgs = wb.match(get_session_id(event), event.get_message(), to_me=event.is_tome())
+    msgs = wb.match(get_session_id(event),
+                    event.get_message(), to_me=event.is_tome())
     if not msgs:
         return False
     if reply_type == "random":
@@ -200,7 +206,7 @@ wb_clear_bank = on_command(
 )
 
 
-prompt_clear = Message.template("此命令将会清空您的{keyword}词库，确定请发送 yes")
+prompt_clear = Message.template("此命令将会清空旅者的{keyword}词库，确定请发送 yes")
 
 
 @wb_clear_cmd.got("is_sure", prompt=prompt_clear)
@@ -212,7 +218,7 @@ async def _(matcher: Matcher, state: T_State = State()):
     if is_sure == "yes":
         res = wb.clear(index)
         if res:
-            await matcher.finish(Message.template("删除{keyword}词库成功~"))
+            await matcher.finish(Message.template("删除{keyword}词库成功。"))
     else:
         await matcher.finish("命令取消")
 
@@ -243,7 +249,8 @@ async def wb_search(
 ):
     if len(matched) == 2:
         type = "群" if isinstance(event, GroupMessageEvent) else "用户"
-        id = event.group_id if isinstance(event, GroupMessageEvent) else event.user_id
+        id = event.group_id if isinstance(
+            event, GroupMessageEvent) else event.user_id
         flag, key = matched
     else:
         type, id, flag, key = matched
@@ -277,14 +284,15 @@ async def wb_search(
     entrys = wb.select(index, type_, Message(key), require_to_me)
 
     if not entrys:
-        await matcher.finish("词库中未找到词条~")
+        await matcher.finish("词库中未找到词条。")
 
     if isinstance(event, GroupMessageEvent):
         forward_msg: List[Dict] = []
         for entry in entrys:
             forward_msg.append(
                 to_json(
-                    "问: " + entry.key, nickname or "user" + " 答:", str(event.user_id)
+                    "问: " + entry.key, nickname or "user" +
+                    " 答:", str(event.user_id)
                 )
             )
             for value in entry.values:
@@ -302,6 +310,7 @@ async def wb_search(
         for entry in entrys:
             msg_temp = "问: " + Message(entry.key) + " 答:"
             for value in entry.values:
-                msg_temp += "\n" + Message.template("{value}").format(value=value)
+                msg_temp += "\n" + \
+                    Message.template("{value}").format(value=value)
             await matcher.send(msg_temp)
             await sleep(1)

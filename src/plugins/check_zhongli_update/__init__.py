@@ -1,45 +1,29 @@
+from nonebot import export
 import imp
-from nonebot.adapters.onebot.v11 import Bot
-from nonebot.permission import SUPERUSER
-from nonebot import on_command
-from .data_source import check_update, get_latest_version_data
-from src.utils.log import logger
-from src.utils.function import get_bot
-from pathlib import Path
-from src.utils.config import config
-from configs.config import Config
-from nonebot.rule import to_me
-from nonebot.params import ArgStr
-import platform
-from nonebot import require
 import os
+import platform
+from pathlib import Path
+
+from configs.config import Config
+from nonebot import on_command, require
+from nonebot.adapters.onebot.v11 import Bot
+from nonebot.params import ArgStr
+from nonebot.permission import SUPERUSER
+from nonebot.rule import to_me
+from src.utils.config import config
+from src.utils.function import get_bot
+from src.utils.log import logger
+
+from .data_source import check_update, get_latest_version_data
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
-__zx_plugin_name__ = "自动更新 [Superuser]"
-__plugin_usage__ = """
-usage：
-    检查更新钟离最新版本，包括了自动更新
-    指令：
-        检查更新钟离
-        重启
-""".strip()
-__plugin_des__ = "就算是钟离也会成长的"
-__plugin_cmd__ = ["检查更新钟离", "重启"]
-__plugin_version__ = 0.1
-__plugin_author__ = "HibiKier"
-__plugin_configs__ = {
-    "UPDATE_REMIND": {
-        "value": True,
-        "help": "钟离是否检测版本状态",
-        "default": True,
-    },
-    "AUTO_UPDATE_ZHENXUN": {
-        "value": False,
-        "help": "钟离是否自动检查更新",
-        "default": False,
-    }
-}
+
+Export = export()
+Export.plugin_name = "检查更新"
+Export.plugin_command = "检查更新钟离 | 重启"
+Export.plugin_usage = "自动从GitHub拉取代码更新钟离；然而现在还不能用，功能测试中..."
+Export.default_status = True
 
 NICKNAME = config.nickname[0]
 

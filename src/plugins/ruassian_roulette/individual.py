@@ -72,7 +72,7 @@ async def _(event: GroupMessageEvent, state: T_State, principal: str = state_get
         print("赌注是：", state["principal"])
         if data["all_mora"] < state["principal"]:
             await money.finish(f"{nickname}，你......有带钱吗？")
-        elif state["principal"] > 30000:
+        elif state["principal"] > 50000:
             await money.reject(Message(f"{nickname}豪掷千金？这可不行......堂主若得知，怕是会将钟某抬回去了。"))
         elif state["principal"] > 5000:
             await money.send(Message(f"{nickname}，勇气可嘉。"))

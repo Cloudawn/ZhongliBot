@@ -1,16 +1,24 @@
-from .dices import rd, help_message, st, en
-from .madness import ti, li
-from .investigator import Investigator
-from .san_check import sc
-from .cards import _cachepath, cards, cache_cards, set_handler, show_handler, sa_handler, del_handler
+import os
 
-from nonebot import get_driver, get_bot
-from nonebot.rule import Rule
+from nonebot import export, get_bot, get_driver
+from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, MessageEvent,
+                                         MessageSegment)
 from nonebot.matcher import Matcher
 from nonebot.plugin import on_startswith
-from nonebot.adapters.onebot.v11 import Bot, MessageEvent, GroupMessageEvent, MessageSegment
+from nonebot.rule import Rule
 
-import os
+from .cards import (_cachepath, cache_cards, cards, del_handler, sa_handler,
+                    set_handler, show_handler)
+from .dices import en, help_message, rd, st
+from .investigator import Investigator
+from .madness import li, ti
+from .san_check import sc
+
+Export = export()
+Export.plugin_name = "coc骰子"
+Export.plugin_command = "发送 .help 查看详情"
+Export.plugin_usage = "丢coc骰子"
+Export.default_status = True
 
 driver = get_driver()
 
@@ -92,12 +100,12 @@ async def cochandler(matcher: Matcher, event: MessageEvent):
 
 
 @ticommand.handle()
-async def ticommandhandler(matcher: Matcher,event:MessageEvent):
+async def ticommandhandler(matcher: Matcher, event: MessageEvent):
     await matcher.finish(MessageSegment.reply(event.message_id)+ti())
 
 
 @licommand.handle()
-async def licommandhandler(matcher: Matcher,event:MessageEvent):
+async def licommandhandler(matcher: Matcher, event: MessageEvent):
     await matcher.finish(MessageSegment.reply(event.message_id)+li())
 
 

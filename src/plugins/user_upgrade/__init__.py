@@ -1,4 +1,4 @@
-from nonebot import on_command, on_fullmatch, on_keyword, on_regex
+from nonebot import export, on_command, on_fullmatch, on_keyword, on_regex
 # from nonebot.adapters import
 from nonebot.adapters.onebot.v11 import (GROUP_MEMBER, Bot, Message,
                                          MessageEvent, MessageSegment)
@@ -10,6 +10,13 @@ from src.modules.user_info import UserInfo
 from src.utils.function import get_message_at
 from src.utils.rule import all_nickname
 from typing_extensions import Self
+
+Export = export()
+Export.plugin_name = "基本信息查询"
+Export.plugin_command = "我的面板（@），我的好感（@），钟离钱包，突破"
+Export.plugin_usage = "查看个人或他人面板信息、背包信息；提升突破等级"
+Export.default_status = True
+
 
 MyAttr = on_command(
     "我的面板", aliases={"我的属性", "查看面板", "查看属性"}, priority=5, block=True)

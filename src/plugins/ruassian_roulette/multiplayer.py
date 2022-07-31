@@ -71,6 +71,7 @@ async def _(
     if (await UserInfo.get_userInfo(event.self_id))["all_mora"] < money:
         await shot.finish("（钟离身无分文，无法坐庄。）")
     if money > user_money:
+        plck.unlock(event.group_id)
         await russian.finish("你......钱够了吗？", at_sender=True)
 
     player_name = event.sender.card or event.sender.nickname

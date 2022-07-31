@@ -1,19 +1,18 @@
 import re
-from emoji.unicode_codes import UNICODE_EMOJI
 
-from nonebot import on_regex
-from nonebot.params import RegexDict
+from nonebot import export, on_regex
 from nonebot.adapters.onebot.v11 import MessageSegment
+from nonebot.params import RegexDict
+
+from emoji.unicode_codes import UNICODE_EMOJI
 
 from .data_source import mix_emoji
 
-
-__help__plugin_name__ = "emojimix"
-__des__ = "emoji合成器"
-__cmd__ = "{emoji1}+{emoji2}"
-__short_cmd__ = __cmd__
-__example__ = "😎+😁"
-__usage__ = f"{__des__}\nUsage:\n{__cmd__}\nExample:\n{__example__}"
+Export = export()
+Export.plugin_name = "emoji合成器"
+Export.plugin_command = "😎+😁"
+Export.plugin_usage = "娱乐插件，将两个emoj合二为一"
+Export.default_status = True
 
 
 emojis = filter(lambda e: len(e) == 1, UNICODE_EMOJI["en"])

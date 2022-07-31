@@ -2,7 +2,7 @@ import asyncio
 import random
 
 from configs.path_config import DATA_PATH, IMAGE_PATH
-from nonebot import on_message, on_regex
+from nonebot import export, on_message, on_regex
 # from nonebot.adapters import
 from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, MessageEvent,
                                          MessageSegment)
@@ -17,8 +17,13 @@ from .stories import (story_bishui, story_contract, story_fulong,
                       story_qinxu, story_spear, story_stone_bird, story_sword,
                       story_tianheng, zl_send_story)
 
-# 这个插件是用来查看礼物文案、礼物背包，以及听钟离讲故事的
 # 钟离部分文案（包括故事、早晚安、进群欢迎）来自lof同人作者 [@阿辰不会写刀](https://whz0508.lofter.com)，禁止抄袭或无授权更改引用。
+
+Export = export()
+Export.plugin_name = "讲故事"
+Export.plugin_command = "钟离讲故事，钟离我想听故事，琉璃百合的干花..."
+Export.plugin_usage = "查看礼物文案、礼物背包，以及听钟离讲故事"
+Export.default_status = True
 
 zl_gifts = on_message(priority=32, block=True)
 zl_story = on_regex("(.*)(故事|我.*听.*故事)(.*)",

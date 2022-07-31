@@ -125,7 +125,7 @@ class Dices(object):
             self._a_check_result = "\n检定值%d %d>95 大失败！" % (
                 self.anum, self.result)
         elif self.result == 1:
-            self._a_check_result = " 大成功！"
+            self._a_check_result = " 大成功。"
         elif self.result <= self.anum // 5:
             self._a_check_result = "\n检定值%d %d≤%d 极难成功" % (
                 self.anum, self.result, self.anum // 5)
