@@ -16,6 +16,7 @@ async def database_init():
         'src.modules.group_info',
         'src.modules.user_info',
         'src.modules.user_attr',
+        'src.modules.plugin_info'
         # 'src.plugins.ruassian_roulette.module'
     ]
     modules = {"models": models}
@@ -29,4 +30,3 @@ async def database_close():
     logger.debug(f'<g>正在断开数据库。</g>')
     await Tortoise.close_connections()
     logger.info(f'<g>数据库断开成功</g>')
-
