@@ -8,8 +8,8 @@ from typing import List
 
 import nonebot
 import ujson as json
-from nonebot.adapters.onebot.v11 import Bot, Message
 from configs.path_config import IMAGE_PATH
+from nonebot.adapters.onebot.v11 import Bot, Message
 from src.utils.function import image
 from src.utils.http_utils import AsyncHttpx
 from src.utils.image_utils import BuildImage
@@ -58,7 +58,7 @@ async def remind(bot: Bot):
 
 async def check_update(bot: Bot) -> 'int, str':
     logger.info("开始检查更新钟离....")
-    _version = "v0.0.0"
+    _version = "v1.0.0"
     if _version_file.exists():
         _version = (
             open(_version_file, "r", encoding="utf8").readline().split(
