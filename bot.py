@@ -31,6 +31,7 @@ driver.on_startup(database_init)
 driver.on_shutdown(database_close)
 
 nonebot.load_plugin("nonebot_plugin_apscheduler")
+nonebot.load_plugin("nonebot_plugin_imageutils")
 nonebot.load_builtin_plugins("echo")
 # nonebot.load_plugins("plugins")
 nonebot.load_plugins("src")
