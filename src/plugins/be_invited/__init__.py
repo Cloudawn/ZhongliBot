@@ -1,12 +1,15 @@
-from nonebot import on_message, on_request, on_command
+from nonebot import on_command, on_message, on_request
+from nonebot.adapters.onebot.v11 import (PRIVATE_FRIEND, Bot,
+                                         FriendRequestEvent,
+                                         GroupDecreaseNoticeEvent,
+                                         GroupRequestEvent, Message,
+                                         MessageEvent, NoticeEvent)
+from nonebot.exception import ActionFailed
 from nonebot.log import logger
-from nonebot.params import Arg, State, CommandArg, ArgPlainText
+from nonebot.params import Arg, ArgPlainText, CommandArg, State
 from nonebot.typing import T_State
-from nonebot.adapters.onebot.v11 import Bot, Message, FriendRequestEvent, GroupRequestEvent,GroupDecreaseNoticeEvent,NoticeEvent,MessageEvent, PRIVATE_FRIEND
-from nonebot.adapters.onebot.v11.exception import ActionFailed
-from requests import delete
-from src.utils.rule import only_passive, only_admin_private_message
-from utils.config import config
+from src.utils.config import config
+from src.utils.rule import only_admin_private_message, only_passive
 
 request_matcher = on_request(rule=only_passive, priority=1)
 
@@ -30,7 +33,7 @@ approve_friend = on_command(
 
 
 @approve_friend.handle()
-async def _(bot: Bot,args: Message = CommandArg()):
+async def _(bot: Bot, args: Message = CommandArg()):
     flag = args.extract_plain_text()
     print(flag)
     if flag:
@@ -71,22 +74,3 @@ async def _(bot: Bot, args: Message = CommandArg()):
             await approve_group.finish("同意成功")
     else:
         await approve_group.finish("输入错误，请重新复制")
-
-
-test_request = on_request(priority=2)
-
-
-@test_request.handle()
-async def friend_request(event: GroupDecreaseNoticeEvent):
-    print("test GroupDecreaseNoticeEvent: ",event)
-
-@test_request.handle()
-async def friend_request(event: NoticeEvent):
-    print("test NoticeEvent: ",event)
-
-
-test_message = on_message(priority=1,block=False)
-
-@test_message.handle()
-async def _(event:MessageEvent):
-    print("测试消息类型:",type(event))
