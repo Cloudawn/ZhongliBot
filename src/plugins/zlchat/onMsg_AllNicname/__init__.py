@@ -206,7 +206,7 @@ async def AllNickname_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
         case[*list_str] if "怎么办" in join_list(list_str):
             if random.randint(0, 10) > 6:
                 send_msg = random.choice(dailyChat_dict.钟离怎么办())
-        case _ if re.match(r'(.*)(都怪|^坏$|坏坏|坏蛋|太坏|过分|好凶|太凶|^坏！$|坏人)(.*)', event_msg, re.U):
+        case _ if re.match(r'(.*)(都怪|^坏$|坏坏|坏蛋|太坏|好凶|太凶|^坏！$|坏人)(.*)', event_msg, re.U):
             send_msg = random.choice(dailyChat_dict.钟离坏())
         case _ if re.match(r'(.*)(天气|气候|温度|季节)(.*)', event_msg, re.U):
             send_msg = await weather(event)
