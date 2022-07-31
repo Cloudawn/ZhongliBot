@@ -1,4 +1,4 @@
-from src.utils.scheduler import scheduler
+from src.utils.scheduler import the_scheduler
 import asyncio
 import random
 
@@ -13,8 +13,7 @@ from src.utils.config import config
 from src.utils.function import state_get_key
 from src.utils.log import logger
 
-from .utils import (GAMBLER, GAMBLER_GROUP, GAMBLER_SELF, alive_txt, die_txt, gent_menu, gun, plck,
-                    random_bullet)
+from .utils import (GAMBLER_SELF, alive_txt, die_txt, gent_menu, gun, plck)
 
 money = on_command(
     "经典模式", aliases={"经典轮盘", "单人模式"}, permission=GROUP, priority=5, block=True
@@ -23,11 +22,10 @@ money = on_command(
 face_path = f"{config.bot_path}resources/image/zlface"
 
 
-
 @money.handle()
 async def _(event: GroupMessageEvent):
     global GAMBLER_SELF
-    if (await UserInfo.get_userInfo(event.self_id))["all_gold"] <= 0:
+    if (await UserInfo.get_userInfo(event.self_id))["all_mora"] <= 0:
         await money.finish("（钟离身无分文，无法坐庄）")
     if plck.check_mode(event.group_id):
         raise FinishedException
@@ -38,7 +36,7 @@ async def _(event: GroupMessageEvent):
             "earning": 0,
             "losing": 0
         })
-        if GAMBLER_SELF[event.user_id]["play_times"] >= 5:
+        if GAMBLER_SELF[event.user_id]["play_times"] > 5:
             await money.finish(
                 random.choice([
                     f"这类游戏，{nickname}今日已多次参与，这可不妙。",
@@ -47,7 +45,7 @@ async def _(event: GroupMessageEvent):
                 ]
                 ),
                 at_sender=True)
-        if GAMBLER_SELF[event.user_id]["earning"] >= 35000:  # 每天最多只能赢走3.5w
+        if GAMBLER_SELF[event.user_id]["earning"] >= 200000:  # 每天最多只能赢走20w
             await money.finish(
                 Message(
                     random.choice([
@@ -60,7 +58,7 @@ async def _(event: GroupMessageEvent):
         plck.lock(event.group_id)
 
 
-@money.got("principal", "旅者想投多少原石呢？")
+@money.got("principal", "旅者想投多少摩拉呢？")
 async def _(event: GroupMessageEvent, state: T_State, principal: str = state_get_key("principal")):
     data = (await UserInfo.get_userInfo(event.user_id))
     nickname = data["nickname"]
@@ -72,7 +70,7 @@ async def _(event: GroupMessageEvent, state: T_State, principal: str = state_get
     try:
         state["principal"] = int(principal)
         print("赌注是：", state["principal"])
-        if data["all_gold"] < state["principal"]:
+        if data["all_mora"] < state["principal"]:
             await money.finish(f"{nickname}，你......有带钱吗？")
         elif state["principal"] > 30000:
             await money.reject(Message(f"{nickname}豪掷千金？这可不行......堂主若得知，怕是会将钟某抬回去了。"))
@@ -91,7 +89,7 @@ async def _(event: GroupMessageEvent, state: T_State, principal: str = state_get
     state['magn_list'] = gent_menu(state['principal'])
     # 子弹上膛
     state['gun'] = gun(1)
-    await UserInfo.change_gold(event.user_id, -state["principal"])
+    await UserInfo.change_mora(event.user_id, -state["principal"])
 
 
 @money.got("next", Message(f"咔。[CQ:image,file=file:///{face_path}/IMG_20220211_174222.jpg]这位朋友，准备好了吗？\"\n→【是|否】\""))
@@ -109,7 +107,7 @@ async def _(event: GroupMessageEvent, state: T_State, next_value: str = state_ge
         else:
             plck.unlock(event.group_id)
             await money.send(at_msg + die_txt)
-            await UserInfo.change_gold(event.self_id, state["principal"])
+            await UserInfo.change_mora(event.self_id, state["principal"])
             GAMBLER_SELF[event.user_id]["play_times"] += 1
             logger.debug(
                 f'群{event.group_id}用户{event.user_id}玩了<y>{GAMBLER_SELF[event.user_id]["play_times"]}</y>次')
@@ -117,22 +115,22 @@ async def _(event: GroupMessageEvent, state: T_State, next_value: str = state_ge
     elif "不继续" == next_value or "否" in next_value or "放弃" in next_value:
         # 游戏结束
         GAMBLER_SELF[event.user_id]["play_times"] += 1
-        zl_gold = (await UserInfo.get_userInfo(event.self_id))['all_gold']
+        zl_mora = (await UserInfo.get_userInfo(event.self_id))['all_mora']
         await money.send(at_msg + "见好就收，也不失为明智的选择。")
         plck.unlock(event.group_id)
         await asyncio.sleep(0.5)
         salary = 0
         for m in state['magn_list'][:next(state['gun'])[1]]:
             salary += m
-        if zl_gold < salary:
-            salary = zl_gold
+        if zl_mora < salary:
+            salary = zl_mora
             await money.send('(你赢走了钟离所有本金。)')
             await money.finish(Message(f'[CQ:image,file=file:///{face_path}/lofter_1642691099736.jpg]以普遍理性而论，我确实没钱了。'))
         else:
-            await money.send(at_msg + f"{nickname}最终获得了 {salary} 原石。")
+            await money.send(at_msg + f"{nickname}最终获得了 {salary} 摩拉。")
             GAMBLER_SELF[event.user_id]["earning"] += salary
-        await UserInfo.change_gold(event.self_id, -salary)
-        await UserInfo.change_gold(event.user_id, salary)
+        await UserInfo.change_mora(event.self_id, -salary)
+        await UserInfo.change_mora(event.user_id, salary)
         logger.debug(
             f'群{event.group_id}用户{event.user_id}玩了<y>{GAMBLER_SELF[event.user_id]["play_times"]}</y>次')
         raise FinishedException

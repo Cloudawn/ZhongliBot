@@ -65,10 +65,10 @@ async def _(
     at_ = state["at"] if state.get("at") else []
     money_pool = state["money_pool"] if state.get("money_pool") else 50
     money = state["money"] if state.get("money") else 50
-    user_money = (await UserInfo.get_userInfo(event.user_id))["all_gold"]
+    user_money = (await UserInfo.get_userInfo(event.user_id))["all_mora"]
     if bullet_num < 0 or bullet_num > 6:
         await russian.reject("子弹数量必须大于0小于7。")
-    if (await UserInfo.get_userInfo(event.self_id))["all_gold"] < money:
+    if (await UserInfo.get_userInfo(event.self_id))["all_mora"] < money:
         await shot.finish("（钟离身无分文，无法坐庄。）")
     if money > user_money:
         await russian.finish("你......钱够了吗？", at_sender=True)
@@ -127,12 +127,12 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
         await shot.finish("俄罗斯轮盘未开始。\n→【多人模式】", at_sender=True)
     if GAMBLER[f"{event.group_id}_{event.user_id}"]['live_status'] == 1:
         await shot.finish("死者是无法开枪的。", at_sender=True)
-    if (await UserInfo.get_userInfo(event.self_id))["all_gold"] <= 0:
+    if (await UserInfo.get_userInfo(event.self_id))["all_mora"] <= 0:
         await shot.send("（钟离没钱了，进入结算...）")
         await final_end(bot, event, GAMBLER_GROUP[event.group_id]["money_pool"], alive_num=1000, die_num=1000, player_qq=player_qq)
-    if (await UserInfo.get_userInfo(event.user_id))["all_gold"] <= 0:
+    if (await UserInfo.get_userInfo(event.user_id))["all_mora"] <= 0:
         await shot.finish("你......钱够了吗？", at_sender=True)
-    if GAMBLER_SELF[event.user_id]["play_times"] >= 5:
+    if GAMBLER_SELF[event.user_id]["play_times"] > 5:
         await shot.finish(
             random.choice([
                 f"这类游戏，{nickname}今日已多次参与，这可不妙。",
@@ -141,7 +141,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
             ]
             ),
             at_sender=True)
-    if GAMBLER_SELF[event.user_id]["earning"] - GAMBLER_SELF[event.user_id]["losing"] >= 35000:  # 每天最多只能赢走3.5w
+    if GAMBLER_SELF[event.user_id]["earning"] - GAMBLER_SELF[event.user_id]["losing"] >= 200000:  # 每天最多只能赢走20w
         await shot.finish(
             Message(
                 random.choice([
@@ -166,7 +166,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
                     )
                     + f"\n下枪中弹概率"
                     f'：{str(float((GAMBLER_GROUP[event.group_id]["bullet_num"])) / float(GAMBLER_GROUP[event.group_id]["null_bullet_num"] - 1 + GAMBLER_GROUP[event.group_id]["bullet_num"]) * 100)[:5]}%\n'
-                    f'''还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"]} 发子弹，下枪奖励：{GAMBLER_GROUP[event.group_id]["money_pool"]+ increase_value}原石。'''
+                    f'''还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"]} 发子弹，下枪奖励：{GAMBLER_GROUP[event.group_id]["money_pool"]+ increase_value}摩拉。'''
                 )
 
                 GAMBLER_GROUP[event.group_id]["null_bullet_num"] -= 1
@@ -180,7 +180,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
                 await shot.send(
                     Message(MessageSegment.reply(event.message_id) +
                             die_txt
-                            + f'''\n{player_name}扣除{GAMBLER_GROUP[event.group_id]["money_pool"]}原石。\n还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"] -1} 发子弹，下枪奖励：{GAMBLER_GROUP[event.group_id]["money_pool"]+increase_value}原石。''',
+                            + f'''\n{player_name}扣除{GAMBLER_GROUP[event.group_id]["money_pool"]}摩拉。\n还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"] -1} 发子弹，下枪奖励：{GAMBLER_GROUP[event.group_id]["money_pool"]+increase_value}摩拉。''',
                             )
                 )
                 GAMBLER_GROUP[event.group_id]["bullet_num"] -= 1
@@ -210,7 +210,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
     except ZeroDivisionError:
         await shot.send(
             Message(MessageSegment.reply(event.message_id)+die_txt
-                    + f'\n{player_name}扣除{GAMBLER_GROUP[event.group_id]["money_pool"]}原石。\n还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"] -1} 发子弹。',
+                    + f'\n{player_name}扣除{GAMBLER_GROUP[event.group_id]["money_pool"]}摩拉。\n还剩 {GAMBLER_GROUP[event.group_id]["bullet_num"] -1} 发子弹。',
                     )
         )
         GAMBLER[f"{event.group_id}_{event.user_id}"]['live_status'] = 1
@@ -237,9 +237,9 @@ async def final_end(bot: Bot, event: GroupMessageEvent, money: int, alive_num: i
     for qq in player_qq:
         earning = GAMBLER_SELF[qq]["earning"] - GAMBLER_SELF[qq]["losing"]
         GAMBLER_SELF[qq]["play_times"] += 1
-        msg += f'''\n{await get_userName(bot, event, qq)}：{earning} 原石'''
-        await UserInfo.change_gold(event.self_id, -earning)
-        await UserInfo.change_gold(qq, earning)
+        msg += f'''\n{await get_userName(bot, event, qq)}：{earning} 摩拉'''
+        await UserInfo.change_mora(event.self_id, -earning)
+        await UserInfo.change_mora(qq, earning)
     await bot.send(event, Message(msg))
     await asyncio.sleep(0.5)
     if alive_num == 0 and die_num > 0:
