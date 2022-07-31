@@ -83,6 +83,7 @@ class UserInfo(Model):
             * ``"today_lucky"``：今日运势
             * ``"today_gold"``：今日原石
             * ``"all_gold"``：总原石
+            * ``"all_mora"``：总摩拉
             * ``"all_friendly"``：好友度
             * ``"sign_times"``：签到次数
         '''
@@ -100,6 +101,7 @@ class UserInfo(Model):
         today_gold = gold_base+lucky_gold*today_lucky
         record.gold += today_gold
         all_gold = record.gold
+        all_mora = record.mora
         today_mora = random.randint(1000, 2000)
         record.mora += today_mora
         # 计算好友度
@@ -112,6 +114,7 @@ class UserInfo(Model):
             "today_gold": today_gold,
             "today_mora": today_mora,
             "all_gold": all_gold,
+            "all_mora": all_mora,
             "all_friendly": record.friendly,
             "sign_times": record.sign_times
         }
