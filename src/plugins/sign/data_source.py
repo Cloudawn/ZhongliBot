@@ -115,7 +115,7 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
     nickname = data_name.get("nickname")
     gold_for_zl = random.randint(500, 700)
     await UserInfo.change_gold(event.self_id, gold_for_zl)
-    await UserInfo.change_mora(event.self_id, gold_for_zl*1000)
+    await UserInfo.change_mora(event.self_id, gold_for_zl)
 
     if random.randint(0, 100) >= 99:
         version = await UserAttr.change_version(event.user_id)
