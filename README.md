@@ -61,9 +61,9 @@
 bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>另外感谢[@Slock](https://github.com/Sclock)妈咪，多次被我的代码气出高血压，但仍未放弃治疗我，非常感动。
 
 # 致谢
-[nonebot2: https://github.com/nonebot/nonebot2](https://github.com/nonebot/nonebot2)<br>
-[真寻bot: https://github.com/nonebot/nonebot2](https://github.com/HibiKier/zhenxun_bot)<br>
-[mini_jx3_bot: https://github.com/nonebot/nonebot2](https://github.com/JustUndertaker/mini_jx3_bot)<br>
-[abrahum/nonebot_plugin_cocdicer: https://github.com/abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)<br>
-[kexue-z/nonebot-plugin-word-bank2: https://github.com/kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)<br>
-[noneplugin/nonebot-plugin-emojimix: https://github.com/noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)<br>
+[nonebot2](https://github.com/nonebot/nonebot2)：超棒的机器人框架！<br>
+[真寻bot](https://github.com/HibiKier/zhenxun_bot)：堪称百科全书的模范bot！<br>
+[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)：白师傅，elegant！<br>
+[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)：非常实用的跑团骰子。<br>
+[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)：用过的最棒的学词插件。<br>
+[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)：可谓nonebot2人手一个的插件了。<br>
