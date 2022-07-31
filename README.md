@@ -60,7 +60,7 @@
 ### 群管理
 - [x] 设置群头衔、群管理（需群主权限）
 - [x] 被辱骂后告状
-- [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``
+- [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``，感谢[yzyyz1387/nonebot_plugin_admin](https://github.com/yzyyz1387/nonebot_plugin_admin)提供的方法
 - [x] 发送加群申请者信息
 
 ### bot管理
