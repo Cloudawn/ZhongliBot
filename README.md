@@ -26,30 +26,60 @@
  
 
 # 已实现的功能
+<details>
+<summary>常用功能</summary>
+ 
 - [x] 使用本地词库进行日常聊天
 - [x] 以好感度作为分级的~~吃桃~~日常互动；如``亲亲``，``抱抱``，``贴贴``，``摸摸``
 - [x] 富文本消息回复，包括语音/图片/图文/视频等~~所以resources很大~~
-- [x] 日常签到，获取升级经验值和原石
-- [x] 个人面板，包括攻击、血量、双暴、速度等
-- [x] 昵称系统
+- [x] 昵称系统，使用``先生叫我xx``后，以后都会这样称呼你
 - [x] 进群欢迎
-- [x] 设置群头衔、群管理（需群主权限）
 - [x] 随机发送一张钟离照片
 - [x] 色色禁言——不可以不敬仙师！
-- [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] ``钟离讲故事``，随机发送一段文字或语音故事
 - [x] ``钟离生草``，随机发送一张草元素含量丰富的图片
 - [x] ``旅途见闻``，随机发送一张原神图片；男角色居多
-- [x] 被辱骂后告状
+ 
+</details>
+
+<details>
+<summary>娱乐功能</summary>
+ 
+- [x] 日常签到，获取升级经验值和原石
+- [x] 个人面板，包括攻击、血量、双暴、速度等
+- [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] coc跑团骰，.rxdy，抄的[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)
-- [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] emoj合成，抄的[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)
+ 
+</details>
+
+<details>
+<summary>管理功能</summary>
+ 
+### 群管理
+- [x] 设置群头衔、群管理（需群主权限）
+- [x] 被辱骂后告状
+- [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``
+- [x] 发送加群申请者信息
+
+### bot管理
+- [x] ``[打开|关闭] xx``：控制插件开关状态
+- [x] ``先生[休息|醒醒]``：控制bot全局开关状态
+- [x] ``滴滴xxx``：向bot管理发送消息
+ 
+</details>
+
+<details>
+<summary>实用功能</summary>
+ 
+- [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] 多语种翻译，来自[@bingyue](https://github.com/bingqiu456)
 - [x] 疫情查询，来自[@bingyue](https://github.com/bingqiu456)
+ 
+</details>
 
 # TODO
 - [ ] ``我的面板``变为图片形式
-- [ ] 增加全局开关和插件管理系统
 - [ ] 收集并分析聊天数据，优化聊天互动
 - [ ] 增加``偷袭群友``与``挑战钟离``
 - [ ] ``俄罗斯轮盘``加入1v1对战模式
