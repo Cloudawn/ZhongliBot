@@ -3,7 +3,7 @@ from nonebot import require
 
 from .log import logger
 
-scheduler = AsyncIOScheduler(timezone="Asia/Shanghai")
+the_scheduler = AsyncIOScheduler(timezone="Asia/Shanghai")
 """
 异步定时器，用于创建定时任务，使用方法：
 ```
@@ -17,6 +17,6 @@ async def _():
 
 
 def start_scheduler():
-    if not scheduler.running:
-        scheduler.start()
+    if not the_scheduler.running:
+        the_scheduler.start()
         logger.info("<g>定时器模块已开启。</g>")
