@@ -95,6 +95,18 @@ async def get_owner_id(bot: Bot, event: GroupMessageEvent):
             return owner["user_id"]
 
 
+async def get_admin_id(bot: Bot, event: GroupMessageEvent):
+    """
+    获取管理员qq列表，返回list
+    """
+    admin_list = []
+    member_list = await bot.get_group_member_list(group_id=event.group_id)
+    for admin in member_list:
+        if admin["role"] == "admin":
+            admin_list.append(admin["user_id"])
+    return admin_list
+
+
 def custom_forward_msg(
     msg_list: List[str], uin: Union[int, str], name: str = "钟离"
 ) -> List[dict]:
@@ -175,6 +187,25 @@ def state_get_key(key: str) -> str:
         else:
             return str(value)
     return Depends(_get_key)
+
+
+def MsgText(data: str):
+    """
+    返回消息文本段内容(即去除 cq 码后的内容)
+    :param data: event.json()
+    :return: str
+    """
+    try:
+        data = json.loads(data)
+        # 过滤出类型为 text 的【并且过滤内容为空的】
+        msg_text_list = filter(lambda x: x["type"] == "text" and x["data"]["text"].replace(" ", "") != "",
+                               data["message"])
+        # 拼接成字符串并且去除两端空格
+        msg_text = " ".join(
+            map(lambda x: x["data"]["text"].strip(), msg_text_list)).strip()
+        return msg_text
+    except:
+        return ""
 
 
 def get_bot() -> Optional[Bot]:
