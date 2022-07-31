@@ -1,35 +1,32 @@
+from .utils import Meme
+from .manager import ActionResult, MemeMode, meme_manager
+from .depends import regex, split_msg
+from .data_source import memes
+from nonebot_plugin_imageutils import BuildImage, Text2Image
 import math
 from io import BytesIO
 from typing import List, Union
-from typing_extensions import Literal
 
-from nonebot.params import Depends
-from nonebot.utils import run_sync
+from nonebot import on_command, on_message, require
+from nonebot.adapters.onebot.v11 import (GroupMessageEvent, Message,
+                                         MessageEvent, MessageSegment)
+from nonebot.adapters.onebot.v11.permission import (GROUP_ADMIN, GROUP_OWNER,
+                                                    PRIVATE_FRIEND)
 from nonebot.matcher import Matcher
-from nonebot.typing import T_Handler
-from nonebot.params import CommandArg
+from nonebot.params import CommandArg, Depends
 from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
-from nonebot import require, on_command, on_message
-from nonebot.adapters.onebot.v11 import (
-    Message,
-    MessageSegment,
-    MessageEvent,
-    GroupMessageEvent,
-)
-from nonebot.adapters.onebot.v11.permission import (
-    GROUP_ADMIN,
-    GROUP_OWNER,
-    PRIVATE_FRIEND,
-)
-
+from nonebot.typing import T_Handler
+from nonebot.utils import run_sync
+from typing_extensions import Literal
+from nonebot import export
 require("nonebot_plugin_imageutils")
-from nonebot_plugin_imageutils import BuildImage, Text2Image
 
-from .utils import Meme
-from .data_source import memes
-from .depends import split_msg, regex
-from .manager import meme_manager, ActionResult, MemeMode
+Export = export()
+Export.plugin_name = "头像表情包"
+Export.plugin_command = "触发方式：指令 + @user/qq/自己/图片\n发送“头像表情包”查看支持的指令"
+Export.plugin_usage = "摸头等头像相关表情制作"
+Export.default_status = True
 
 
 __plugin_meta__ = PluginMetadata(
@@ -47,11 +44,14 @@ __plugin_meta__ = PluginMetadata(
 PERM_EDIT = GROUP_ADMIN | GROUP_OWNER | PRIVATE_FRIEND | SUPERUSER
 PERM_GLOBAL = SUPERUSER
 
-help_cmd = on_command("头像表情包", aliases={"头像相关表情包", "头像相关表情制作"}, block=True, priority=12)
+help_cmd = on_command(
+    "头像表情包", aliases={"头像相关表情包", "头像相关表情制作"}, block=True, priority=12)
 block_cmd = on_command("禁用表情", block=True, priority=12, permission=PERM_EDIT)
 unblock_cmd = on_command("启用表情", block=True, priority=12, permission=PERM_EDIT)
-block_cmd_gl = on_command("全局禁用表情", block=True, priority=12, permission=PERM_GLOBAL)
-unblock_cmd_gl = on_command("全局启用表情", block=True, priority=12, permission=PERM_GLOBAL)
+block_cmd_gl = on_command("全局禁用表情", block=True,
+                          priority=12, permission=PERM_GLOBAL)
+unblock_cmd_gl = on_command(
+    "全局启用表情", block=True, priority=12, permission=PERM_GLOBAL)
 
 
 @run_sync
@@ -69,7 +69,8 @@ def help_image(user_id: str, memes: List[Meme]) -> BytesIO:
     idx = math.ceil(len(memes) / 2)
     text2 = cmd_text(memes[:idx])
     text3 = cmd_text(memes[idx:], start=idx + 1)
-    img1 = Text2Image.from_text(text1, 30, weight="bold").to_image(padding=(20, 10))
+    img1 = Text2Image.from_text(
+        text1, 30, weight="bold").to_image(padding=(20, 10))
     img2 = Text2Image.from_bbcode_text(text2, 30).to_image(padding=(20, 10))
     img3 = Text2Image.from_bbcode_text(text3, 30).to_image(padding=(20, 10))
     w = max(img1.width, img2.width + img3.width)
@@ -120,7 +121,7 @@ async def _(
         if result == ActionResult.SUCCESS:
             message = f"表情 {name} 禁用成功"
         elif result == ActionResult.NOTFOUND:
-            message = f"表情 {name} 不存在！"
+            message = f"表情 {name} 不存在。"
         else:
             message = f"表情 {name} 禁用失败"
         messages.append(message)
@@ -141,7 +142,7 @@ async def _(
         if result == ActionResult.SUCCESS:
             message = f"表情 {name} 启用成功"
         elif result == ActionResult.NOTFOUND:
-            message = f"表情 {name} 不存在！"
+            message = f"表情 {name} 不存在。"
         else:
             message = f"表情 {name} 启用失败"
         messages.append(message)
@@ -160,7 +161,7 @@ async def _(matcher: Matcher, msg: Message = CommandArg()):
         if result == ActionResult.SUCCESS:
             message = f"表情 {name} 已设为白名单模式"
         elif result == ActionResult.NOTFOUND:
-            message = f"表情 {name} 不存在！"
+            message = f"表情 {name} 不存在。"
         else:
             message = f"表情 {name} 设置失败"
         messages.append(message)
@@ -179,7 +180,7 @@ async def _(matcher: Matcher, msg: Message = CommandArg()):
         if result == ActionResult.SUCCESS:
             message = f"表情 {name} 已设为黑名单模式"
         elif result == ActionResult.NOTFOUND:
-            message = f"表情 {name} 不存在！"
+            message = f"表情 {name} 不存在。"
         else:
             message = f"表情 {name} 设置失败"
         messages.append(message)
