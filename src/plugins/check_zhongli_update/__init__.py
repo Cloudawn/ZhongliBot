@@ -62,7 +62,7 @@ async def _(bot: Bot):
             )
 
 
-@restart.got("flag", prompt=f"确定是否重启{NICKNAME}？确定请回复[是|好|确定]（重启失败咱们将失去联系，请谨慎！）")
+@restart.got("flag", prompt=f"确定是否重启{NICKNAME}？确定请回复[是|好|确定]（重启失败将与钟离失去联系，请谨慎。）")
 async def _(flag: str = ArgStr("flag")):
     if flag.lower() in ["true", "是", "好", "确定", "确定是"]:
         await restart.send(f"开始重启{NICKNAME}..请稍等...")
