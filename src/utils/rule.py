@@ -1,13 +1,16 @@
 from cgitb import text
 from socket import MsgFlag
-from nonebot.adapters.onebot.v11 import (FriendRequestEvent, GroupRequestEvent, MessageEvent,
-                                         RequestEvent,
-                                         PrivateMessageEvent)
+
+from nonebot.adapters.onebot.v11 import (FriendRequestEvent, GroupRequestEvent,
+                                         MessageEvent, PrivateMessageEvent,
+                                         RequestEvent)
 from nonebot.internal.rule import Rule as Rule
 # from nonebot.params import EventToMe
 from src.utils.config import config
 from src.utils.function import MessageEvent_to_text
+
 # from typing_extensions import Literal, SupportsIndex
+
 
 def only_passive(event: RequestEvent) -> bool:
     """只匹配被加好友和被邀请进群的事件。"""
@@ -29,6 +32,7 @@ def only_admin_private_message(event: PrivateMessageEvent) -> bool:
     """只匹配Bot管理员私聊"""
     return str(event.user_id) == config.admin_number
 
+
 def all_nickname(event: MessageEvent):
     """匹配消息中是否包含bot昵称，包含则返回True"""
     is_tome = event.is_tome()
@@ -41,4 +45,4 @@ def all_nickname(event: MessageEvent):
     #     if name in text:
     #         return True
     # return False4
-    return any(name in text for name in config.nickname) # 45行代码实现效果等价于41~44行，但更简洁高效
+    return any(name in text for name in config.nickname)
