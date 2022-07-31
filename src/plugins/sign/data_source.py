@@ -138,7 +138,7 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
 
     msg_txt = get_msg()
     msg_txt += f'\n原石+{data.get("today_gold")}（总{data.get("all_gold")}）'
-    msg_txt += f'\n摩拉+{data.get("today_mora")}（总{data.get("mora")}）'
+    msg_txt += f'\n摩拉+{data.get("today_mora")}（总{data.get("all_mora")}）'
     msg_txt = Replace(msg_txt).replace("旅者", f"{nickname}")
     msg += msg_head+MessageSegment.text(msg_txt)
     return msg

@@ -44,8 +44,8 @@ async def date_with_zl(onMsg_AllNickname: Type[Matcher], event: MessageEvent, ma
         msg = random.choice(
             ["夜色已深，集市港口已收，不妨早些休息吧，明日再去也不迟。", "（夜已深沉，客卿睡下了，改日再寻吧。）"])
         return msg
+    change_value = await UserInfo.date_sign_in(user_id=user_id)
     if fri_lev <= 0:
-        change_value = await UserInfo.date_sign_in(user_id=user_id)
         return(MessageSegment.reply(event.message_id) + "......谢谢，劳你费心了。" + f"\n——好感度+{change_value}")
     if re.match(r"(.*)(吃|喝|买)(.*)", event_msg, re.U):
         pattern_1 = re.match(r"(.*)(吃|喝|买)(.*)", event_msg, re.U)
