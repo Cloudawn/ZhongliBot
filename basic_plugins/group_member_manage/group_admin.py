@@ -19,7 +19,7 @@ cancle_admin = on_command("取消管理", priority=5, block=True,
                           permission=SUPERUSER | GROUP_OWNER)
 
 
-admin_changed = on_notice(priority=5, block=False)
+admin_changed = on_notice(priority=1, block=False)
 
 
 @admin_changed.handle()

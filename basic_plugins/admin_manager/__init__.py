@@ -129,33 +129,33 @@ def get_status(event: PrivateMessageEvent) -> bool:
 # ----------------------------------------------------------------------------
 
 
-@get_request.handle()
-async def _(bot: Bot, event: FriendRequestEvent):
-    '''好友请求事件'''
-    logger.info(
-        f"<g>超级用户管理</g> | 收到好友请求：{event.user_id}"
-    )
-    flag: bool = config.default['access_firend']
-    if flag:
-        # 接受请求
-        await event.approve(bot)
-    else:
-        await event.reject(bot)
-    await get_request.finish()
+# @get_request.handle()
+# async def _(bot: Bot, event: FriendRequestEvent):
+#     '''好友请求事件'''
+#     logger.info(
+#         f"<g>超级用户管理</g> | 收到好友请求：{event.user_id}"
+#     )
+#     flag: bool = config.default['access_firend']
+#     if flag:
+#         # 接受请求
+#         await event.approve(bot)
+#     else:
+#         await event.reject(bot)
+#     await get_request.finish()
 
 
-@get_request.handle()
-async def _(bot: Bot, event: GroupRequestEvent):
-    '''群请求事件'''
-    logger.info(
-        f"<g>超级用户管理</g> | 收到群邀请：{event.group_id}"
-    )
-    flag: bool = config.default['access_group']
-    if flag:
-        await event.approve(bot)
-    else:
-        await event.reject(bot)
-    await get_request.finish()
+# @get_request.handle()
+# async def _(bot: Bot, event: GroupRequestEvent):
+#     '''群请求事件'''
+#     logger.info(
+#         f"<g>超级用户管理</g> | 收到群邀请：{event.group_id}"
+#     )
+#     flag: bool = config.default['access_group']
+#     if flag:
+#         await event.approve(bot)
+#     else:
+#         await event.reject(bot)
+#     await get_request.finish()
 
 
 @friend_list.handle()

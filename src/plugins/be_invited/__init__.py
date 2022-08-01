@@ -11,7 +11,7 @@ from nonebot.typing import T_State
 from src.utils.config import config
 from src.utils.rule import only_admin_private_message, only_passive
 
-request_matcher = on_request(rule=only_passive, priority=1)
+request_matcher = on_request(rule=only_passive, priority=1, block=False)
 
 
 @request_matcher.handle()
