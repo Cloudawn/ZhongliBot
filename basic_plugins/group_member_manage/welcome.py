@@ -1,9 +1,9 @@
-
 import asyncio
+import os
 import time
-from random import choice
-from typing import Type
+from random import choice, randint
 
+from data.Get_dict import dailyChat_dict
 from nonebot import on, on_notice, on_request
 from nonebot.adapters.onebot.v11 import (Bot, GroupIncreaseNoticeEvent,
                                          GroupMessageEvent, GroupRequestEvent,
@@ -14,7 +14,7 @@ from nonebot.typing import T_State
 from scipy import rand
 from src.modules.user_info import UserInfo
 from src.utils.config import config
-from src.utils.function import _get_qq_img
+from src.utils.function import Replace, _get_qq_img
 from src.utils.log import logger
 
 group_welcome = on_notice(priority=1, block=False)
@@ -79,4 +79,18 @@ async def _(bot: Bot, event: GroupIncreaseNoticeEvent):
         else:
             msg = (Message(MessageSegment.at(event.user_id) +
                            "异乡的旅人，原来是你吗？今日一见，阁下果真气宇不凡，有幸结识，倍感欣悦。时间正好，随我进来吧。"))
+        await group_welcome.finish(msg)
+    else:
+        # 进群后向大家问好
+        data = await UserInfo.get_userInfo(user_id=event.user_id)
+        nickname = data["nickname"]
+        random_value = randint(0, 10)
+        if 0 <= random_value < 8:
+            msg = Replace(choice(dailyChat_dict.打招呼())
+                          ).replace("旅者", f"{nickname}")
+        else:
+            record_path = f"{config.bot_path}/resources/record/问好"
+            record_list = os.listdir(record_path)
+            msg = Message(MessageSegment.record(
+                f"file:///{record_path}/{choice(record_list)}"))
         await group_welcome.finish(msg)

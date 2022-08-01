@@ -186,11 +186,11 @@ async def _(bot: Bot, user_id: int = Depends(get_name)):
             user_name = user['nickname']
             break
     if flag:
-        bot.call_api(api="delete_friend", id=user_id)
+        await bot.call_api(api="delete_friend", id=user_id)
         msg = f'成功，删除好友：{user_name}({user_id})。'
     else:
         msg = f"失败，未找到好友：{user_id}"
-    await friend_delete(msg)
+    await friend_delete.finish(msg)
 
 
 @group_list.handle()
@@ -271,7 +271,7 @@ async def _(bot: Bot, group_id: int = Depends(get_name), status: bool = Depends(
         msg = "设置成功。"
     else:
         msg = f"设置失败，未找到群：{group_id}"
-    await handle_robot(msg)
+    await handle_robot.finish(msg)
 
 
 @help.handle()

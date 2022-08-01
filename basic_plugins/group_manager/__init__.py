@@ -113,11 +113,11 @@ async def _(bot: Bot, event: FriendAddNoticeEvent):
     '''好友增加通知事件'''
     friend = await bot.get_stranger_info(user_id=event.user_id)
     nickname = friend['nickname']
-    msg = f"我添加了好友【{nickname}】({event.user_id})"
+    msg = f"“一份新的契约？好吧，虽然我还在度假，但也可以陪你走一趟。度假期间的话，我会自称「钟离」，你呢，{nickname}，你会签下什么名字？”"
     superusers = list(bot.config.superusers)
     async for user_id in GroupList_Async(superusers):
         try:
-            await bot.send_private_msg(user_id=user_id, message=msg)
+            await bot.send_private_msg(user_id=user_id, message=f"{nickname}({event.user_id})已是我的友人了。")
         except Exception:
             pass
     await get_notice.finish(msg)
