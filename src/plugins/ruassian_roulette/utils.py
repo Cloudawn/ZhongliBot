@@ -56,7 +56,8 @@ def gun(bullet_max: int = 1):
             bullet_index = choice(weight)
             if bullet_index not in choice_list:
                 break
-        gun_clip[bullet_index] = 1
+        if 1 not in gun_clip:
+            gun_clip[bullet_index] = 1
         choice_list.append(bullet_index)
     # # 随机排列
     logger.debug(f'子弹排列是{gun_clip}')
