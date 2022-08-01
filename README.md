@@ -45,6 +45,7 @@
 <details>
 <summary>娱乐功能</summary>
  
+- [x] 头像表情包制作，来自[noneplugin/nonebot-plugin-petpet](https://github.com/noneplugin/nonebot-plugin-petpet)
 - [x] 日常签到，获取升级经验值和原石
 - [x] 个人面板，包括攻击、血量、双暴、速度等
 - [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
@@ -59,7 +60,7 @@
 ### 群管理
 - [x] 设置群头衔、群管理（需群主权限）
 - [x] 被辱骂后告状
-- [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``
+- [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``，感谢[yzyyz1387/nonebot_plugin_admin](https://github.com/yzyyz1387/nonebot_plugin_admin)提供的方法
 - [x] 发送加群申请者信息
 
 ### bot管理
@@ -72,6 +73,8 @@
 <details>
 <summary>实用功能</summary>
  
+- [x] 简洁的点歌功能，来自[noneplugin/nonebot-plugin-simplemusic](https://github.com/noneplugin/nonebot-plugin-simplemusic)
+- [x] 米游币商品兑换，来自[CMHopeSunshine/LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon/tree/Bot/src/plugins/nonebot_plugin_myb_exchange)
 - [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] 多语种翻译，来自[@bingyue](https://github.com/bingqiu456)
 - [x] 疫情查询，来自[@bingyue](https://github.com/bingqiu456)
@@ -87,13 +90,11 @@
 - [ ] 记录群成员生日，并在当天祝福与赠礼 <br>
 
  ## 碎碎念
- 作者是一个一般路过同人女，技术较菜，正在学习中，目标是创作一个生动的钟离先生。 资源为什么不走网络呢...啊，原来是害怕出现雷点cp啊。同人女，恐怖如斯。<br>
+ 作者是一个一般路过同人女，技术较菜，正在学习中，目标是创作一个生动的钟离先生。 <br>
+ 啊，希望有朝一日我的代码能和钟离先生一样美丽优雅。<br>
 bot架构和部分插件是从[真寻](https://github.com/HibiKier/zhenxun_bot)和[mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)上抄的。（逃走）<br>另外感谢[@Slock](https://github.com/Sclock)妈咪，多次被我的代码气出高血压，但仍未放弃治疗我，非常感动。
 
 # 致谢
 [nonebot2](https://github.com/nonebot/nonebot2)：超棒的机器人框架！<br>
 [真寻bot](https://github.com/HibiKier/zhenxun_bot)：堪称百科全书的模范bot！<br>
 [mini_jx3_bot](https://github.com/JustUndertaker/mini_jx3_bot)：白师傅，elegant！<br>
-[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)：非常实用的跑团骰子。<br>
-[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)：用过的最棒的学词插件。<br>
-[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)：可谓nonebot2人手一个的插件了。<br>
