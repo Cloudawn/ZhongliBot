@@ -16,8 +16,6 @@ from src.utils.log import logger
 
 from data.Get_dict import dailyChat_dict
 
-from ..utils import join_list
-from .data import noTOME_say_hello
 
 face_path = f"{config.bot_path}resources/image/zlface"
 
@@ -66,8 +64,6 @@ async def onMsg_NotTome_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
                     f"[CQ:image,file=file:///{face_path}/-86488060.jpg]这有何不妥吗？",
                     "这类表情虽然质朴，却很真诚，我认为很合适。",
                     "这类表情......不适合使用吗？"]))
-        case ["欢", "迎", *list_str]:
-            msg = await noTOME_say_hello(event)
         case _ if re.match(r'.*(?i)(msr|陌生人)', event_msg, re.U):
             msg = Message(random.choice(
                 ["看来，这位朋友运气不错。", "这无缘无故的攀比之心，是从何而来啊？", "嗯，品质尚佳。", "心态很重要。", "不要急，放宽心。"]))

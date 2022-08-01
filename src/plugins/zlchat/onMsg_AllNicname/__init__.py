@@ -96,7 +96,7 @@ async def AllNickname_handle(bot: Bot, event: MessageEvent, matcher: Matcher):
             send_msg = await say_evening(onMsg_AllNickname, event)
         case _ if re.match(r'(.*)(晚安|夜安)(.*)', event_msg, re.U):
             send_msg = await say_night(onMsg_AllNickname, event)
-        case _ if re.match(r'^((好|你好|您好)|(在吗|在不在))(!|呀|啊|？)?$', event_msg, re.U):
+        case _ if re.match(r'^((好|你好|您好|欢迎)|(在吗|在不在))(!|呀|啊|？)?$', event_msg, re.U):
             send_msg = await say_hello(onMsg_AllNickname, event)
         case _ if re.match(r'(.*)(谢谢|多谢|感谢)(.*)', event_msg, re.U):
             send_msg = random.choice(dailyChat_dict.谢谢先生())
