@@ -18,7 +18,7 @@ memes = [
     Meme("littleangel", littleangel, ("小天使",)),
     Meme("dont_touch", dont_touch, ("不要靠近",)),
     Meme("alike", alike, ("一样",)),
-    Meme("roll", roll, ("滚",)),
+    Meme("roll", roll, ("咕噜咕噜",)),
     Meme("play_game", play_game, ("玩游戏",), r"来?玩游戏"),
     Meme("worship", worship, ("膜", "膜拜"), r"膜拜?"),
     Meme("eat", eat, ("吃",)),
