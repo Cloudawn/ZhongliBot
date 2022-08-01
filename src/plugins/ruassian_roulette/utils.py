@@ -9,7 +9,6 @@ from nonebot.adapters.onebot.v11 import Message, MessageSegment
 from src.utils.log import logger
 
 
-
 class selfDict(dict):
     def get_or_set(self, key: int|str, value: int | dict):
         if key not in self:
@@ -43,7 +42,7 @@ alive_txt = Message(
 
 )
 
-weight = [0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5]
+weight = [0,1,2,3,4,5]
 # weight = [1, 1, 1, 1, 0, 0, 2, 3, 3, 0, 4, 5]
 gun_clip = [0] * 6
 
