@@ -136,7 +136,7 @@ wordbank_dic = {
     ],
     "流汗": [
         "…旅者，这是何意？是又有什么新的想法吗？嗯，且不提是何感受，你这面色瞧着十分……又疲惫的样子，唉，要多记得休息啊。",
-        f"[CQ:image,file=file:///{face_path}/嫌弃.gif]",
+        f"[CQ:image,file=file:///{face_path}/嫌弃.gif]"
         ""
     ],
     "理我": [
@@ -253,7 +253,7 @@ wordbank_dic = {
         "那我大概要扫你的兴。",
         "要事在身，劳烦旅者欠身相让。",
         "把手拿开。",
-        "手，拿开。"
+        "手，拿开。",
         "不可逾越。"
 
     ],
@@ -266,7 +266,7 @@ wordbank_dic = {
         "童言无忌的年龄，你已经过了",
         "即便是玩笑，也需注意分寸",
         "你我虽是友人，但在某些问题上，也当分清边界",
-        f"[CQ:image,file=file:///{face_path}/IMG_20220325_151350.jpg]",
+        f"[CQ:image,file=file:///{face_path}/IMG_20220325_151350.jpg]"
 
     ],
     "likeZl_lv1": [
@@ -311,7 +311,7 @@ wordbank_dic = {
     ],
     "我难受": [
         "旅者有无大碍？我带你去不卜庐吧。",
-        "躺下歇息一会吧，我恰好有一副汤药，旅者且稍等片刻。",
+        "躺下歇息一会吧，我为你熬些汤药，旅者且稍等片刻。",
         "诊断之事我也略知一二。旅者且躺下，我来检查一下吧。",
         "旅者独自一人在稻妻，务必注意身体",
         "旅者下去休息，这里交给我",
@@ -595,7 +595,7 @@ wordbank_dic = {
         f"[CQ:record,file=file:///{record_path}/zlau/唱歌.mp3]旅者想听吗，那献丑了。",
         f"[CQ:image,file=file:///{face_path}/6120d2a44ecd5c0b.PNG]（咳咳）哒，哒哒哒哒，哒哒哒哒，哒，哒",
         f"[CQ:record,file=file:///{record_path}/zlau/唱歌.mp3]可否合旅者心意？",
-        f"[CQ:record,file=file:///{record_path}/zlau/唱歌.mp3]唱歌...略懂一二，还请旅者莫要笑话"
+        f"[CQ:record,file=file:///{record_path}/zlau/唱歌.mp3]唱歌...略懂一二，还请旅者莫要笑话",
         f"[CQ:record,file=file:///{record_path}/zlau/唱歌.mp3]那就让旅者见笑了。"
     ],
     "钟离不唱歌": [
@@ -992,7 +992,7 @@ wordbank_dic = {
         "回见。",
         "嗯，我目送你离开吧。",
         "旅者若还有求，来往生堂找我便是。",
-        "再见，祝你好运。"
+        "再见，祝你好运。",
         "再见，早些休息。"
     ],
     "where_went": [
@@ -1025,7 +1025,7 @@ wordbank_dic = {
     ["旅者，别闹了。",
      "这个点，旅者还未睡醒吗？",
      f"[CQ:image,file=file:///{face_path}/-6a180a329400175d.jpg]",
-     f"[CQ:image,file=file:///{face_path}/IMG_20220211_180748.jpg]喝点茶，醒醒酒吧。"
+     f"[CQ:image,file=file:///{face_path}/IMG_20220211_180748.jpg]喝点茶，醒醒酒吧。",
      f"[CQ:image,file=file:///{face_path}/60737a43fdb36a8b.jpg]这样的玩笑，稍欠妥当。"
      ],
     "toilet": [
