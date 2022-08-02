@@ -40,7 +40,7 @@ async def _(bot: Bot, event: GroupRequestEvent):
         msg = f'''\n昵称：{data["nickname"]}'''
         msg += f'''\n账号：{data["user_id"]}'''
         msg += f'''\n等级：{data["level"]}'''
-        msg += f'\n验证：{event.comment}'
+        msg += f'\n{event.comment}'
         await group_request.finish(
             MessageSegment.text("这位旅人的信息是...")+msg_head +
             MessageSegment.text(msg)
