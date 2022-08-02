@@ -61,7 +61,8 @@
 - [x] 设置群头衔、群管理（需钟离是群主）
 - [x] 被辱骂后告状
 - [x] ``禁言@xx 60``、``解禁@xx``、``踢出@xx``，感谢[yzyyz1387/nonebot_plugin_admin](https://github.com/yzyyz1387/nonebot_plugin_admin)提供的方法
-- [x] 发送加群申请者信息
+- [x] 发送加群申请者信息至群内
+- [x] 刷屏禁言
 
 ### bot管理
 - [x] ``[打开|关闭] xx``：控制插件开关状态
