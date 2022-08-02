@@ -87,7 +87,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/
@@ -118,6 +118,9 @@ dmypy.json
 ​
 # file 不需要提交的文件
 config.yml
+coc_cards.json
+group_mute_data.json
+bank.json
 ​
 # log 不需要提交的任意包含后缀名为log的文件
 *.log

@@ -51,6 +51,7 @@ async def _(
 ):
     global GAMBLER
     if bullet_num in ["取消", "算了"]:
+        plck.unlock(event.group_id)
         await russian.finish("全身而退，此乃上策。")
     try:
         if GAMBLER_GROUP[event.group_id][1] != 0:
@@ -69,6 +70,7 @@ async def _(
     if bullet_num < 0 or bullet_num > 6:
         await russian.reject("子弹数量必须大于0小于7。")
     if (await UserInfo.get_userInfo(event.self_id))["all_mora"] < money:
+        plck.unlock(event.group_id)
         await shot.finish("（钟离身无分文，无法坐庄。）")
     if money > user_money:
         plck.unlock(event.group_id)
@@ -123,8 +125,10 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
             await final_end(bot, event, money=0, alive_num=100, die_num=100, player_qq=player_qq)
             return
     except KeyError:
+        plck.unlock(event.group_id)
         await shot.finish("俄罗斯轮盘未开始。\n→【多人模式】", at_sender=True)
     if GAMBLER_GROUP[event.group_id][1] == 0:
+        plck.unlock(event.group_id)
         await shot.finish("俄罗斯轮盘未开始。\n→【多人模式】", at_sender=True)
     if GAMBLER[f"{event.group_id}_{event.user_id}"]['live_status'] == 1:
         await shot.finish("死者是无法开枪的。", at_sender=True)
