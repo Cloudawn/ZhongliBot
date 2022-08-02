@@ -56,11 +56,11 @@ async def _(bot: Bot, event: MessageEvent):
         case ["关", "于", "璃", "月"]:
             await zl_gifts.finish("你可知晓……昔日，璃月港曾有驾朦鐘巨舰猎杀海兽者，被人们称为“船师”。在海洋被无常灾祸统治的时代，浮浪之人朝生暮死。")
         case ["关", "于", "寒", "武"]:
-            await story_hanwu(zl_story=zl_gifts)
+            await story_hanwu(zl_gifts)
         case ["关", "于", "契", "约"]:
-            await story_contract(zl_story=zl_gifts)
+            await story_contract(zl_gifts)
         case ["关", "于", "石", "鸢"]:
-            await story_stone_bird(zl_story=zl_gifts)
+            await story_stone_bird(zl_gifts)
         case ["靖", "世", "九", "柱"]:
             await zl_gifts.send("我记得那枚戒指，内刻“世间纷乱，众生皆苦”。")
             await asyncio.sleep(2)
