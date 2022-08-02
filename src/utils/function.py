@@ -190,7 +190,7 @@ def state_get_key(key: str) -> str:
     return Depends(_get_key)
 
 
-def MsgText(data: str):
+def get_message_text(data: str):
     """
     返回消息文本段内容(即去除 cq 码后的内容)
     :param data: event.json()
@@ -237,7 +237,6 @@ def get_message_img(data: Union[str, Message]) -> List[str]:
         for seg in data["image"]:
             img_list.append(seg.data["url"])
     return img_list
-
 
 
 def image(

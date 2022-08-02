@@ -10,7 +10,7 @@ from nonebot.log import logger
 from nonebot.permission import SUPERUSER
 from nonebot.typing import T_State
 from src.modules.user_info import UserInfo
-from src.utils.function import (MsgText, get_message_at, get_owner_id,
+from src.utils.function import (get_message_text, get_message_at, get_owner_id,
                                 get_userName)
 
 from .utils import banSb, plugin_config
@@ -30,7 +30,7 @@ kik_out = on_command(
 async def shut_up(bot: Bot, event: GroupMessageEvent):
     nickname = (await UserInfo.get_userInfo(event.user_id))["nickname"]
     try:
-        msg = MsgText(event.json()).replace(" ", "").replace("禁", "")
+        msg = get_message_text(event.json()).replace(" ", "").replace("禁", "")
         time = int("".join(
             map(str, list(map(lambda x: int(x), filter(lambda x: x.isdigit(), msg))))))
         # 提取消息中所有数字作为禁言时间
