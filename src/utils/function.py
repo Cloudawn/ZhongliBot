@@ -1,13 +1,14 @@
 import json
 import random
 from pathlib import Path
-from typing import List, Optional, Union
+from typing import List, Optional, Type, Union
 
 import nonebot
 from httpx import AsyncClient
 from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, Message,
                                          MessageEvent, MessageSegment)
 from nonebot.internal.matcher import Matcher
+from nonebot.matcher import Matcher, matchers
 from nonebot.params import Arg, Depends
 from src.utils.log import logger
 
@@ -219,6 +220,26 @@ def get_bot() -> Optional[Bot]:
         return None
 
 
+def get_message_img(data: Union[str, Message]) -> List[str]:
+    """
+    说明:
+        获取消息中所有的 图片 的链接
+    参数:
+        :param data: event.json()
+    """
+    img_list = []
+    if isinstance(data, str):
+        data = json.loads(data)
+        for msg in data["message"]:
+            if msg["type"] == "image":
+                img_list.append(msg["data"]["url"])
+    else:
+        for seg in data["image"]:
+            img_list.append(seg.data["url"])
+    return img_list
+
+
+
 def image(
         file: Union[str, Path, bytes] = None,
         path: str = None,
@@ -260,3 +281,14 @@ def get_local_proxy():
         获取 config.py 中设置的代理
     """
     return SYSTEM_PROXY if SYSTEM_PROXY else None
+
+
+def get_matchers() -> List[Type[Matcher]]:
+    """
+    获取所有插件
+    """
+    _matchers = []
+    for i in matchers.keys():
+        for matcher in matchers[i]:
+            _matchers.append(matcher)
+    return _matchers
