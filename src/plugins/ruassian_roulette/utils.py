@@ -47,24 +47,37 @@ weight = [0,1,2,3,4,5]
 gun_clip = [0] * 6
 
 
-def gun(bullet_max: int = 1):
-    assert 1 <= bullet_max < 6, "子弹数量错误"
-    # 权重
-    choice_list: list = []
-    for _ in range(bullet_max):
-        while True:
-            bullet_index = choice(weight)
-            if bullet_index not in choice_list:
-                break
-        if 1 not in gun_clip:
-            gun_clip[bullet_index] = 1
-        choice_list.append(bullet_index)
-    # # 随机排列
+def gun(bullet_max: int):
+    assert 1 <= bullet_max <= 6, "子弹数量错误"
+    # 组合列表
+    gun_clip = [0] * (6-bullet_max) + [1] * bullet_max
+    # 随机排列
+    shuffle(gun_clip)
     logger.debug(f'子弹排列是{gun_clip}')
     # 开枪
-
+    print("子弹序列：", gun_clip)
     for index, bullet in enumerate(gun_clip):
         yield (bullet != 1, index)
+
+# def gun(bullet_max: int = 1):
+#     assert 1 <= bullet_max < 6, "子弹数量错误"
+#     # 权重
+#     choice_list: list = []
+#     for _ in range(bullet_max):
+#         while True:
+#             bullet_index = choice(weight)
+#             if bullet_index not in choice_list:
+#                 break
+#         if 1 not in gun_clip:
+#             gun_clip[bullet_index] = 1
+#         choice_list.append(bullet_index)
+#     # # 随机排列
+#     logger.debug(f'子弹排列是{gun_clip}')
+#     # 开枪
+
+#     for index, bullet in enumerate(gun_clip):
+#         yield (bullet != 1, index)
+    
 
 
 def random_bullet(num: int) -> list:
