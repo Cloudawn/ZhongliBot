@@ -1,7 +1,7 @@
 from nonebot import export
 
-from .group_admin import cancle_admin as cancle_admin
-from .group_admin import set_admin as set_admin
+from .set_group_admin import cancle_admin as cancle_admin
+from .set_group_admin import set_admin as set_admin
 from .member_manage import cancle_shut_up as cancle_shut_up
 from .member_manage import kik_out as kik_out
 from .member_manage import set_shut_up as set_shut_up
