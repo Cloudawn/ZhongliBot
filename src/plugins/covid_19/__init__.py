@@ -2,7 +2,7 @@ from nonebot import export, on_command
 from nonebot.adapters.onebot.v11 import Message
 from nonebot.params import CommandArg
 
-from . import domestic, foreign
+from . import domestic, foreign,search_city
 
 Export = export()
 Export.plugin_name = "疫情查询"
