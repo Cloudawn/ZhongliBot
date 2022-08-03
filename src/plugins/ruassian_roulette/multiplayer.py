@@ -121,6 +121,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
 
     try:
         if time.time() - GAMBLER_GROUP[event.group_id]["time"] > 60:
+            plck.unlock(event.group_id)
             await shot.send("时间已到，进入结算......")
             await final_end(bot, event, money=0, alive_num=100, die_num=100, player_qq=player_qq)
             return
