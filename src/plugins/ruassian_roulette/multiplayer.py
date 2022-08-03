@@ -238,7 +238,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
 
 async def final_end(bot: Bot, event: GroupMessageEvent, money: int, alive_num: int, die_num: int, player_qq: list):
     global GAMBLER
-    msg = '————游戏结算————'
+    msg = '————今日玩家盈亏总表————'
     for qq in player_qq:
         earning = GAMBLER_SELF[qq]["earning"] - GAMBLER_SELF[qq]["losing"]
         GAMBLER_SELF[qq]["play_times"] += 1
