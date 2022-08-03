@@ -124,6 +124,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
             plck.unlock(event.group_id)
             await shot.send("时间已到，进入结算......")
             await final_end(bot, event, money=0, alive_num=100, die_num=100, player_qq=player_qq)
+            logger.debug(f'群{event.group_id}<y>俄罗斯轮盘进入结算</y>')
             return
     except KeyError:
         plck.unlock(event.group_id)
@@ -239,7 +240,7 @@ async def _(bot: Bot, event: GroupMessageEvent, state: T_State,):
 
 async def final_end(bot: Bot, event: GroupMessageEvent, money: int, alive_num: int, die_num: int, player_qq: list):
     global GAMBLER
-    msg = '————今日玩家盈亏总表————'
+    msg = '——今日收益总表——'
     for qq in player_qq:
         earning = GAMBLER_SELF[qq]["earning"] - GAMBLER_SELF[qq]["losing"]
         GAMBLER_SELF[qq]["play_times"] += 1

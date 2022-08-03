@@ -10,7 +10,7 @@ from src.utils.log import logger
 
 
 class selfDict(dict):
-    def get_or_set(self, key: int|str, value: int | dict):
+    def get_or_set(self, key: int | str, value: int | dict):
         if key not in self:
             self[key] = value
         return self[key]
@@ -42,7 +42,7 @@ alive_txt = Message(
 
 )
 
-weight = [0,1,2,3,4,5]
+weight = [0, 1, 2, 3, 4, 5]
 # weight = [1, 1, 1, 1, 0, 0, 2, 3, 3, 0, 4, 5]
 gun_clip = [0] * 6
 
@@ -77,7 +77,6 @@ def gun(bullet_max: int):
 
 #     for index, bullet in enumerate(gun_clip):
 #         yield (bullet != 1, index)
-    
 
 
 def random_bullet(num: int) -> list:
@@ -128,7 +127,11 @@ class PluginsLock:
         self._dict[str(group)] = (True, int(nowtime()) + 120)
 
     def unlock(self, group: int):
-        del self._dict[str(group)]
+        try:
+            del self._dict[str(group)]
+        except KeyError:
+            self._dict[str(group)] = (False, int(nowtime()) + 0)
+            del self._dict[str(group)]
 
     # def lock_single(self, user_id:int):
     #     """
