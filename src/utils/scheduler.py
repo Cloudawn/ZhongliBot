@@ -7,9 +7,9 @@ the_scheduler = AsyncIOScheduler(timezone="Asia/Shanghai")
 """
 异步定时器，用于创建定时任务，使用方法：
 ```
-from src.utils.scheduler import scheduler
+from src.utils.scheduler import the_scheduler
 
-@scheduler.scheduled_job('cron', hour=0, minute=0)
+@the_scheduler.scheduled_job('cron', hour=0, minute=0)
 async def _():
     pass
 ```

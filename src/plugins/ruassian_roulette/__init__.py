@@ -16,7 +16,7 @@ Export.plugin_usage = "娱乐插件，和钟离对赌"
 Export.default_status = True
 
 
-@the_scheduler.scheduled_job("cron", hour=0, minute=0)
+@the_scheduler.scheduled_job("cron", hour=0, minute=2)
 async def _():
     '''每天零点重置俄罗斯轮盘数据'''
     logger.info("正在重置俄罗斯轮盘数据")
