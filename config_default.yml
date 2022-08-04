@@ -1,7 +1,7 @@
 bot_path: "" # 这里填bot所在文件路径，下列两行为示例：
 
-# bot_path: "C:/WangShengTang/bingshi/bingshi/"        # 这是Windows路径
-# bot_path: "/home/abing/WangShengTang/zlbot/zlbot/"   # 这是Linux路径
+# bot_path: "C:/WangShengTang/bingshi/ZhongliBot/"        # 这是Windows路径
+# bot_path: "/home/abing/WangShengTang/zlbot/ZhongliBot/"   # 这是Linux路径
 
 nickname: # 这里填钟离别名
   - "钟离"
