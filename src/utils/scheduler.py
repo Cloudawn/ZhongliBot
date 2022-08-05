@@ -3,7 +3,10 @@ from nonebot import require
 
 from .log import logger
 
-the_scheduler = AsyncIOScheduler(timezone="Asia/Shanghai")
+the_scheduler = AsyncIOScheduler(
+    timezone="Asia/Shanghai",
+    job_defaults={'misfire_grace_time': 5 * 60}
+)
 """
 异步定时器，用于创建定时任务，使用方法：
 ```
@@ -14,6 +17,7 @@ async def _():
     pass
 ```
 """
+
 
 
 def start_scheduler():
