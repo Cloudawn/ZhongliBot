@@ -114,6 +114,9 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
     data_name = await UserInfo.get_userInfo(user_id=event.user_id)
     nickname = data_name.get("nickname")
     gold_for_zl = random.randint(500, 700)
+    zl_gold = (await UserInfo.get_userInfo(user_id=event.self_id))['all_gold']
+    if zl_gold <= 0:
+        gold_for_zl = random.randint(1000, 3000)  # 给钟离发救济款
     await UserInfo.change_gold(event.self_id, gold_for_zl)
     await UserInfo.change_mora(event.self_id, gold_for_zl)
 
@@ -124,7 +127,6 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
             f"[CQ:image,file=file:///{config.bot_path}resources/image/钟离自拍/{random.choice(['-1ffd8655055b96f9','-20e234d03682f4ba','20275a9eb8f34659'])}.jpg]你得到了岩神的注视。")
         return msg_txt
 
-    zl_gold = (await UserInfo.get_userInfo(user_id=event.self_id))['all_gold']
     data = await UserInfo.sign_in(
         user_id=user_id,
         # group_id=group_id,

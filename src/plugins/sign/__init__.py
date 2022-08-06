@@ -5,7 +5,6 @@ from src.utils.log import logger
 from src.utils.scheduler import the_scheduler
 from . import data_source as source
 
-
 Export = export()
 Export.plugin_name = "每日签到"
 Export.plugin_command = "签到"
