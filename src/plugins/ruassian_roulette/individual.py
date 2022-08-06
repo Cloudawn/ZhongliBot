@@ -2,7 +2,7 @@ from src.utils.scheduler import the_scheduler
 import asyncio
 import random
 
-from nonebot import on_command
+from nonebot import on_command,on_fullmatch
 from nonebot.adapters.onebot.v11 import (GROUP, Bot, GroupMessageEvent,
                                          Message, MessageSegment)
 from nonebot.exception import ActionFailed, FinishedException
@@ -19,7 +19,9 @@ money = on_command(
     "经典模式", aliases={"经典轮盘", "单人模式"}, permission=GROUP, priority=5, block=True
 )
 
+
 face_path = f"{config.bot_path}resources/image/zlface"
+
 
 
 @money.handle()
