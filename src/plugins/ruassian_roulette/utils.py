@@ -5,8 +5,11 @@ from random import choice, shuffle
 from time import time as nowtime
 from typing import Dict, List, Tuple, Union
 
+from nonebot import require
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 from src.utils.log import logger
+
+scheduler = require("nonebot_plugin_apscheduler").scheduler
 
 
 class selfDict(dict):
