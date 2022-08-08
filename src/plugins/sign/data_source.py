@@ -115,8 +115,8 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
     nickname = data_name.get("nickname")
     gold_for_zl = random.randint(500, 700)
     zl_gold = (await UserInfo.get_userInfo(user_id=event.self_id))['all_gold']
-    if zl_gold <= 0:
-        gold_for_zl = random.randint(1000, 3000)  # 给钟离发救济款
+    if zl_gold <= 100000:
+        gold_for_zl = random.randint(20000, 40000)  # 给钟离发救济款
     await UserInfo.change_gold(event.self_id, gold_for_zl)
     await UserInfo.change_mora(event.self_id, gold_for_zl)
 
