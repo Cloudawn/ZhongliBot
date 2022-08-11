@@ -42,7 +42,11 @@ async def set_nickname(SetNickname: Type[Matcher], theName, event) -> NoReturn:
     if name_bool:
         img = [f"[CQ:image,file=file:///{face_path}/-2abbde1d74d75bdb.jpg]",
                f"[CQ:image,file=file:///{face_path}/2db6226a985c2802.jpg]",
-               f"[CQ:image,file=file:///{face_path}/微微皱眉.png]"]
+               f"[CQ:image,file=file:///{face_path}/微微皱眉.png]",
+               f"[CQ:image,file=file:///{face_path}/-6a180a329400175d.jpg]",
+               f"[CQ:image,file=file:///{face_path}/IMG_20220211_180748.jpg]",
+               f"[CQ:image,file=file:///{face_path}/60737a43fdb36a8b.jpg]"
+               ]
         change_value = random.randint(-3, -1)
         await UserInfo.change_frendly(user_id=user_id, change_value=change_value)
         send_msg_list = [f"{theName}？这不合适。",
@@ -50,9 +54,8 @@ async def set_nickname(SetNickname: Type[Matcher], theName, event) -> NoReturn:
                          f"{theName}......其他人也是这样称呼旅者的？",
                          "旅者，别闹了。",
                          "这个点，旅者还未睡醒吗？",
-                         f"[CQ:image,file=file:///{face_path}/-6a180a329400175d.jpg]",
-                         f"[CQ:image,file=file:///{face_path}/IMG_20220211_180748.jpg]旅者喝点茶，醒醒酒吧。"
-                         f"[CQ:image,file=file:///{face_path}/60737a43fdb36a8b.jpg]这样的玩笑，稍欠妥当。"]
+                         "旅者喝点茶，醒醒酒吧。",
+                         "这样的玩笑，稍欠妥当。"]
         send_msg = random.choice(send_msg_list)+f"\n好感度{change_value}点"
         await SetNickname.finish(Message(random.choice(img)+send_msg))
     if len(theName) > 6:
