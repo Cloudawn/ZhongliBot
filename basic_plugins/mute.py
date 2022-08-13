@@ -102,29 +102,39 @@ async def _(bot: Bot, event: GroupMessageEvent):
             mute_dict[event.user_id]["time"] = time.time()
             mute_dict[event.user_id]["count"] = 1
         mute_dict[event.user_id]["msg"] = msg
-        if time.time() - mute_dict[event.user_id]["time"] > int(mute_data[group_id]["time"]):
-            mute_dict[event.user_id]["time"] = time.time()
-            mute_dict[event.user_id]["count"] = 1
-        if (
-            mute_dict[event.user_id]["count"] > mute_data[group_id]["count"]
-            and time.time() - mute_dict[event.user_id]["time"]
-            < mute_data[group_id]["time"]
-        ):
-            try:
-                if mute_data[group_id]["duration"] != 0:
-                    await bot.set_group_ban(
-                        group_id=event.group_id,
-                        user_id=event.user_id,
-                        duration=mute_data[group_id]["duration"] * 60,
-                    )
-                    await mute.send(f"说了这么多，停下休息片刻吧。", at_sender=True)
-                    mute_dict[event.user_id]["count"] = 0
-                    logger.info(
-                        f"USER {event.user_id} GROUP {event.group_id} "
-                        f'检测刷屏 被禁言 {mute_data[group_id]["duration"] / 60} 分钟'
-                    )
-            except ActionFailed:
-                pass
+        try:
+            if time.time() - mute_dict[event.user_id]["time"] > int(mute_data[group_id]["time"]):
+                mute_dict[event.user_id]["time"] = time.time()
+                mute_dict[event.user_id]["count"] = 1
+        except TypeError:
+            mute_data[group_id]["time"] = 10
+        try:
+            if (
+                mute_dict[event.user_id]["count"] > mute_data[group_id]["count"]
+                and time.time() - mute_dict[event.user_id]["time"]
+                < mute_data[group_id]["time"]
+            ):
+                try:
+                    if mute_data[group_id]["duration"] != 0:
+                        await bot.set_group_ban(
+                            group_id=event.group_id,
+                            user_id=event.user_id,
+                            duration=mute_data[group_id]["duration"] * 60,
+                        )
+                        await mute.send(f"说了这么多，停下休息片刻吧。", at_sender=True)
+                        mute_dict[event.user_id]["count"] = 0
+                        logger.info(
+                            f"USER {event.user_id} GROUP {event.group_id} "
+                            f'检测刷屏 被禁言 {mute_data[group_id]["duration"] / 60} 分钟'
+                        )
+                except ActionFailed:
+                    pass
+                except TypeError:
+                    mute_data[group_id]["duration"] = 1
+
+        except TypeError:
+            mute_data[group_id]["count"] = 4
+            
 
 
 @mute_setting.handle()
