@@ -1,6 +1,6 @@
 import asyncio
 
-from nonebot import on_command
+from nonebot import export, on_command
 from nonebot.adapters.onebot.v11 import Message, MessageEvent, MessageSegment
 from nonebot.matcher import Matcher
 from nonebot.params import Arg, ArgPlainText, CommandArg, RawCommand
@@ -8,6 +8,12 @@ from nonebot.rule import to_me
 from src.modules.user_info import UserInfo
 
 from .drawer import get_img, get_taskId, get_token
+
+Export = export()
+Export.plugin_name = "画画"
+Export.plugin_command = "油画 落霞与孤鹜齐飞；中国画 落霞与孤鹜齐飞；水彩画 落霞与孤鹜齐飞；"
+Export.plugin_usage = "钟离琴棋书画样样精通~"
+Export.default_status = True
 
 drawer = on_command(
     "画画", aliases={"绘画", "油画", "水彩画", "中国画"}, priority=5)
