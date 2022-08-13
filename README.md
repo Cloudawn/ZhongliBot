@@ -52,6 +52,7 @@
 - [x] 俄罗斯轮盘小游戏，包括 ``单人模式``和``多人模式``
 - [x] coc跑团骰，.rxdy，抄的[abrahum/nonebot_plugin_cocdicer](https://github.com/abrahum/nonebot_plugin_cocdicer)
 - [x] emoj合成，抄的[noneplugin/nonebot-plugin-emojimix](https://github.com/noneplugin/nonebot-plugin-emojimix)
+- [x] ai绘画，来自[noneplugin/nonebot-plugin-drawer](https://github.com/CrazyBoyM/nonebot-plugin-drawer)
  
 </details>
 
