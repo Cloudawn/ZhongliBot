@@ -1,7 +1,6 @@
 import asyncio
 import random
 import time
-from tkinter import EventType
 from typing import Dict, List
 
 from nonebot import on_command
