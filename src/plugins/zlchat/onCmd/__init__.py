@@ -2,7 +2,7 @@
 import random
 import re
 from tokenize import group
-
+from nonebot.permission import SUPERUSER
 from data.Get_dict import dailyChat_dict
 from nonebot import on_command
 # from nonebot.adapters import
@@ -59,6 +59,9 @@ eat = on_command("吃", aliases={"喝", "品尝", "请享用",
 
 _title = on_command("给我头衔", aliases={"我要头衔"},
                     priority=9, rule=to_me(), block=True)
+
+admin_title = on_command("给他头衔", aliases={"他要头衔","她要头衔","给她头衔"},
+                    priority=9, rule=to_me(), block=True,permission=SUPERUSER)
 
 touch_me = on_command("摸摸", aliases={"摸摸我","摸摸我的"},
                     priority=28, rule=to_me(), block=True)
@@ -125,6 +128,10 @@ async def _(event: MessageEvent, userWords: Message = CommandArg()):
 async def _(bot: Bot, event: GroupMessageEvent, title: Message = CommandArg()):
     await set_title(_title, bot, event, title)
 
+
+@admin_title.handle()
+async def _(bot: Bot, event: GroupMessageEvent, title: Message = CommandArg()):
+    await set_title(_title, bot, event, title)
 
 # 投喂食物
 @eat.handle()

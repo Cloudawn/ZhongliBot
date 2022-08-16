@@ -10,7 +10,8 @@ from nonebot.params import CommandArg
 from nonebot.rule import to_me
 from src.modules.user_info import UserInfo
 from src.utils.config import config
-from src.utils.function import Replace, get_owner_id, get_userName
+from src.utils.function import (Replace, get_message_at, get_owner_id,
+                                get_userName)
 from src.utils.log import logger
 
 pic_root_path = f"{config.bot_path}resources/image"
@@ -19,7 +20,11 @@ face_path = f"{config.bot_path}resources/image/zlface"
 
 async def set_title(_title, bot: Bot, event: GroupMessageEvent, title: Message = CommandArg()):
     title_text = title.extract_plain_text()
-    user_id = event.user_id
+    user_id = get_message_at(event.json())
+    if user_id:
+        user_id = user_id[0]
+    else:
+        user_id = event.user_id
     nickname = (await UserInfo.get_userInfo(user_id))["nickname"]
     if title_text == "":
         msg = f"{nickname}想要什么头衔？"

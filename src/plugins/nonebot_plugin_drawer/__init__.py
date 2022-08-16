@@ -29,7 +29,7 @@ async def handle_first_receive(matcher: Matcher, event: MessageEvent, command=Ra
     if command != '画画':
         style = command
         text = args
-        await matcher.send(f'创作主题为「{text}」的{style}......嗯，我也略知一二。请稍等两分钟吧。')
+        await matcher.send(f'创作主题为「{text}」的{style}......嗯，我也略知一二。请稍等几分钟吧。')
         access_token = await get_token()
         print(access_token)
         taskId = await get_taskId(access_token, text, style)
