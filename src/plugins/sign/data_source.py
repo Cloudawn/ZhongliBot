@@ -120,7 +120,7 @@ async def get_sign_in(user_id: int, event: GroupMessageEvent) -> Message:
     await UserInfo.change_gold(event.self_id, gold_for_zl)
     await UserInfo.change_mora(event.self_id, gold_for_zl)
 
-    if random.randint(0, 100) >= 99:
+    if random.randint(0, 100) >= 99 and (await UserAttr.get_userAttr(user_id=event.user_id))["version"] == "无":
         version = await UserAttr.change_version(event.user_id)
         msg_txt = f'一枚{version}神之眼掉落在你的手边。'
         msg_txt += Message(
