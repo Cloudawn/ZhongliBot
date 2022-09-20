@@ -136,17 +136,5 @@ class PluginsLock:
             self._dict[str(group)] = (False, int(nowtime()) + 0)
             del self._dict[str(group)]
 
-    # def lock_single(self, user_id:int):
-    #     """
-    #     多人模式开启后，锁单人模式
-    #     """
-    #     self._dict[str(user_id)] = (True, int(nowtime()) + 65)
-
-    # def unlock_single(self,user_id:int):
-    #     """
-    #     多人模式结束，解锁单人模式
-    #     """
-    #     del self._dict[str(user_id)]
-
 
 plck = PluginsLock()

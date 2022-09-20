@@ -39,6 +39,7 @@ alive_player: List[str] = []
 @russian.handle()
 async def _(event: GroupMessageEvent):
     if plck.check_mode(event.group_id):
+        logger.debug(f"<g>群{event.group_id}</g>已锁")
         await russian.finish("游戏进行或冷却中...")
     else:
         plck.lock(event.group_id)
@@ -260,6 +261,5 @@ async def final_end(bot: Bot, event: GroupMessageEvent, money: int, alive_num: i
     player_qq.clear()
     GAMBLER_GROUP.clear()
     GAMBLER.clear()
-    logger.debug(f'<Y>{GAMBLER}</Y>')
-    # GAMBLER.clear()
+    logger.debug(f'GAMBLER是<Y>{GAMBLER}</Y>,GAMBLER_GROUP是<Y>{GAMBLER_GROUP}</Y>')
     plck.unlock(event.group_id)

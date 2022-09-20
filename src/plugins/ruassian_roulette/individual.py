@@ -30,6 +30,7 @@ async def _(event: GroupMessageEvent):
     if (await UserInfo.get_userInfo(event.self_id))["all_mora"] <= 0:
         await money.finish("（钟离身无分文，无法坐庄）")
     if plck.check_mode(event.group_id):
+        logger.debug(f"<g>群{event.group_id}</g>已锁")
         raise FinishedException
     else:
         nickname = (await UserInfo.get_userInfo(event.user_id))['nickname']
@@ -82,7 +83,7 @@ async def _(event: GroupMessageEvent, state: T_State, principal: str = state_get
         elif state["principal"] < 50:
             await money.send(Message(f"{nickname}未免过于谨慎了。不过，也并非坏事。"))
             await asyncio.sleep(0.5)
-        elif state["principal"] < 0:
+        elif state["principal"] <= 0:
             await money.reject(f"这个数字，{nickname}是认真的吗？")
     except ValueError:
         await money.reject(f"{nickname}需输入数字。")
@@ -122,12 +123,14 @@ async def _(event: GroupMessageEvent, state: T_State, next_value: str = state_ge
         plck.unlock(event.group_id)
         await asyncio.sleep(0.5)
         salary = 0
+        # 结算用户总奖励
         for m in state['magn_list'][:next(state['gun'])[1]]:
             salary += m
+        # 钟离余额不足
         if zl_mora < salary:
             salary = zl_mora
             await money.send('(你赢走了钟离所有本金。)')
-            await money.finish(Message(f'[CQ:image,file=file:///{face_path}/lofter_1642691099736.jpg]以普遍理性而论，我确实没钱了。'))
+            await money.send(Message(f'[CQ:image,file=file:///{face_path}/lofter_1642691099736.jpg]以普遍理性而论，我确实没钱了。'))
         else:
             await money.send(at_msg + f"{nickname}最终获得了 {salary} 摩拉。")
             GAMBLER_SELF[event.user_id]["earning"] += salary
