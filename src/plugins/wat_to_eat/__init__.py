@@ -16,8 +16,7 @@ require("nonebot_plugin_imageutils")
 
 Export = export()
 Export.plugin_name = "今天吃什么"
-Export.plugin_command = "早上吃什么，晚上吃什么，中午吃什么"
-Export.plugin_usage = "摸头等头像相关表情制作"
+Export.plugin_command = "早上吃什么，晚上吃什么，中午吃什么，今天吃什么"
 Export.default_status = True
 
 
