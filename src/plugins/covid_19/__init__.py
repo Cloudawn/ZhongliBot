@@ -6,7 +6,7 @@ from . import domestic, foreign,search_city
 
 Export = export()
 Export.plugin_name = "疫情查询"
-Export.plugin_command = "疫情xx | 海外疫情xx|查风险xxx"
+Export.plugin_command = "疫情xx | 海外疫情xx|查风险xxx， 出行政策 北京，出行政策 北京 上海"
 Export.plugin_usage = "查询疫情信息，新增、死亡等，风险地区"
 Export.default_status = True
 
