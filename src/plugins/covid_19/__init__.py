@@ -1,10 +1,8 @@
 from nonebot import export, on_command
-from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, Message
-from nonebot.internal.matcher import Matcher
+from nonebot.adapters.onebot.v11 import Message
 from nonebot.params import CommandArg
 
-from . import domestic, foreign, search_city
-from .search_travelpolicy import travelpolicy
+from . import domestic, foreign,search_city
 
 Export = export()
 Export.plugin_name = "疫情查询"
@@ -30,17 +28,5 @@ search_danger = on_command("查风险")
 
 
 @search_danger.handle()
-async def _(foo: Message = CommandArg()):
+async def _(foo:Message=CommandArg()):
     await search_danger.finish(await search_city.search_city(foo=str(foo)))
-
-search_policy = on_command(
-    "出行政策", priority=6, block=True)
-
-
-@search_policy.handle()
-async def _(search_policy: Matcher, event: GroupMessageEvent, bot: Bot, place: Message = CommandArg()):
-    place_str = place.extract_plain_text()
-    msg = await travelpolicy(search_policy, event, bot, place=place_str)
-    await bot.call_api(
-        "send_group_forward_msg", group_id=event.group_id, messages=msg
-    )
