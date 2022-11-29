@@ -7,7 +7,6 @@
  # 钟离Bot
  以原神钟离先生为原型创作的同人Q群吃桃机器人<br>
  ****
- ## 备战预推免，预计十月底开始系统重构代码...
  
  ## 关于
   钟离先生他真的，我哭死。因为太喜欢钟离了，决定写一个钟离bot吃桃。<br>
@@ -40,6 +39,7 @@
 - [x] ``钟离讲故事``，随机发送一段文字或语音故事
 - [x] ``钟离生草``，随机发送一张草元素含量丰富的图片
 - [x] ``旅途见闻``，随机发送一张原神图片；男角色居多
+- [x] ``今天吃什么``，``中午吃什么``，``晚上吃什么``，``夜宵吃什么``
  
 </details>
 
@@ -79,10 +79,9 @@
 <summary>实用功能</summary>
  
 - [x] 简洁的点歌功能，来自[noneplugin/nonebot-plugin-simplemusic](https://github.com/noneplugin/nonebot-plugin-simplemusic)
-- [x] 米游币商品兑换，来自[CMHopeSunshine/LittlePaimon](https://github.com/CMHopeSunshine/LittlePaimon/tree/Bot/src/plugins/nonebot_plugin_myb_exchange)
 - [x] 学词，并记录到词库中，抄的[kexue-z/nonebot-plugin-word-bank2](https://github.com/kexue-z/nonebot-plugin-word-bank2)
 - [x] 多语种翻译，来自[@bingyue](https://github.com/bingqiu456)
-- [x] 疫情查询，来自[@bingyue](https://github.com/bingqiu456)
+- [x] 疫情查询，包括查疫情地区，查出行政策等，来自[@bingyue](https://github.com/bingqiu456)；移植了[@SlightDust](https://github.com/SlightDust/yiqing_HoshinoBot)佬的出行政策查询
  
 </details>
 
