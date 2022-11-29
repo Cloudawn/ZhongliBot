@@ -1,12 +1,12 @@
+from dataclasses import dataclass
+from io import BytesIO
+from typing import Callable, List, Protocol, Tuple
+
 import httpx
 import imageio
-from io import BytesIO
-from dataclasses import dataclass
+from nonebot_plugin_imageutils import BuildImage
 from PIL.Image import Image as IMG
 from typing_extensions import Literal
-from typing import Callable, List, Tuple, Protocol
-
-from nonebot_plugin_imageutils import BuildImage
 
 
 @dataclass

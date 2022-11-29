@@ -2,6 +2,7 @@ from .functions import *
 from .utils import Meme
 
 memes = [
+    # Meme("petpet", petpet, ("rua",)),
     Meme("universal", universal, ("万能表情", "空白表情")),
     Meme("kiss", kiss, ("亲", "亲亲"), r"亲亲?"),
     Meme("rub", rub, ("贴", "贴贴", "蹭", "蹭蹭"), r"贴贴?|蹭蹭?"),

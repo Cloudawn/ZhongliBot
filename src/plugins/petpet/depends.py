@@ -3,24 +3,17 @@ import shlex
 from io import BytesIO
 from typing import List, Optional
 
-from nonebot.rule import Rule
 from nonebot import get_driver
+from nonebot.adapters.onebot.v11 import (Bot, GroupMessageEvent, Message,
+                                         MessageEvent, MessageSegment,
+                                         unescape)
+from nonebot.params import Depends, State
+from nonebot.rule import Rule
 from nonebot.typing import T_State
-from nonebot.params import State, Depends
-from nonebot.adapters.onebot.v11 import (
-    Bot,
-    Message,
-    MessageSegment,
-    MessageEvent,
-    GroupMessageEvent,
-    unescape,
-)
-
 from nonebot_plugin_imageutils import BuildImage
 
+from .download import download_avatar, download_url
 from .utils import UserInfo
-from .download import download_url, download_avatar
-
 
 USERS_KEY = "USERS"
 SENDER_KEY = "SENDER"
@@ -38,12 +31,13 @@ def regex(pattern: str) -> Rule:
 
         seg_text = str(msg_seg).lstrip()
         start = "|".join(get_driver().config.command_start)
-        matched = re.match(rf"(?:{start})(?:{pattern})", seg_text, re.IGNORECASE)
+        matched = re.match(rf"(?:{start})(?:{pattern})",
+                           seg_text, re.IGNORECASE)
         if not matched:
             return False
 
         new_msg = msg.copy()
-        seg_text = seg_text[matched.end() :].lstrip()
+        seg_text = seg_text[matched.end():].lstrip()
         if seg_text:
             new_msg[0].data["text"] = seg_text
         else:
@@ -100,7 +94,8 @@ def split_msg():
                     )
                 )
             elif msg_seg.type == "image":
-                users.append(UserInfo(img_url=str(msg_seg.data.get("url", ""))))
+                users.append(UserInfo(img_url=str(
+                    msg_seg.data.get("url", ""))))
             elif msg_seg.type == "text":
                 raw_text = str(msg_seg)
                 try:
@@ -110,7 +105,7 @@ def split_msg():
                 for text in texts:
                     if is_qq(text):
                         users.append(UserInfo(qq=text))
-                    elif text == "自己":
+                    elif text == "自己" or text == "我":
                         users.append(
                             UserInfo(
                                 qq=str(event.user_id),

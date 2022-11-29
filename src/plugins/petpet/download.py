@@ -70,10 +70,10 @@ async def check_resources():
     await add_font("consola.ttf", resource_url("fonts/consola.ttf"))
 
 
-driver = get_driver()
+# driver = get_driver()
 
 
-@driver.on_startup
-def _():
-    logger.info("正在检查资源文件...")
-    asyncio.ensure_future(check_resources())
+# @driver.on_startup
+# def _():
+#     logger.info("正在检查资源文件...")
+#     asyncio.ensure_future(check_resources())

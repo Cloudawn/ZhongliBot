@@ -1,13 +1,8 @@
-from .utils import Meme
-from .manager import ActionResult, MemeMode, meme_manager
-from .depends import regex, split_msg
-from .data_source import memes
-from nonebot_plugin_imageutils import BuildImage, Text2Image
 import math
 from io import BytesIO
 from typing import List, Union
 
-from nonebot import on_command, on_message, require
+from nonebot import export, on_command, on_message, require
 from nonebot.adapters.onebot.v11 import (GroupMessageEvent, Message,
                                          MessageEvent, MessageSegment)
 from nonebot.adapters.onebot.v11.permission import (GROUP_ADMIN, GROUP_OWNER,
@@ -18,8 +13,14 @@ from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
 from nonebot.typing import T_Handler
 from nonebot.utils import run_sync
+from nonebot_plugin_imageutils import BuildImage, Text2Image
 from typing_extensions import Literal
-from nonebot import export
+
+from .data_source import memes
+from .depends import regex, split_msg
+from .manager import ActionResult, MemeMode, meme_manager
+from .utils import Meme
+
 require("nonebot_plugin_imageutils")
 
 Export = export()

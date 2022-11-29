@@ -1,17 +1,16 @@
 import random
-from datetime import datetime
 from collections import namedtuple
-from PIL import Image, ImageFilter, ImageDraw
-from PIL.Image import Image as IMG
-from typing import List, Dict, Optional
+from datetime import datetime
+from typing import Dict, List, Optional
 
-from nonebot_plugin_imageutils.fonts import Font
 from nonebot_plugin_imageutils import BuildImage, Text2Image
+from nonebot_plugin_imageutils.fonts import Font
+from PIL import Image, ImageDraw, ImageFilter
+from PIL.Image import Image as IMG
 
-from .download import load_image
-from .utils import UserInfo, save_gif, make_jpg_or_gif, translate
 from .depends import *
-
+from .download import load_image
+from .utils import UserInfo, make_jpg_or_gif, save_gif, translate
 
 TEXT_TOO_LONG = "文字太长了哦，改短点再试吧~"
 NAME_TOO_LONG = "名字太长了哦，改短点再试吧~"
@@ -48,8 +47,7 @@ def universal(img: BuildImage = UserImg(), args: List[str] = Args(0, 10)):
 
 def petpet(img: BuildImage = UserImg(), arg: str = Arg(["圆"])):
     img = img.convert("RGBA").square()
-    if arg == "圆":
-        img = img.circle()
+    img = img.circle()
 
     frames: List[IMG] = []
     locs = [
@@ -149,7 +147,8 @@ def play(img: BuildImage = UserImg(), arg=NoArg()):
         (182, 59, 98, 92), (183, 71, 90, 96), (180, 131, 92, 101)
     ]
     # fmt: on
-    raw_frames: List[BuildImage] = [load_image(f"play/{i}.png") for i in range(23)]
+    raw_frames: List[BuildImage] = [
+        load_image(f"play/{i}.png") for i in range(23)]
     img_frames: List[BuildImage] = []
     for i in range(len(locs)):
         frame = raw_frames[i]
@@ -192,7 +191,8 @@ def rip(img: BuildImage = UserImg(), arg=NoArg()):
 
 
 def throw(img: BuildImage = UserImg(), arg=NoArg()):
-    img = img.convert("RGBA").circle().rotate(random.randint(1, 360)).resize((143, 143))
+    img = img.convert("RGBA").circle().rotate(
+        random.randint(1, 360)).resize((143, 143))
     frame = load_image("throw/0.png")
     frame.paste(img, (15, 178), alpha=True)
     return frame.save_jpg()
@@ -234,7 +234,8 @@ def crawl(img: BuildImage = UserImg(), arg: str = Arg()):
 
 
 def support(img: BuildImage = UserImg(), arg=NoArg()):
-    img = img.convert("RGBA").square().resize((815, 815)).rotate(23, expand=True)
+    img = img.convert("RGBA").square().resize(
+        (815, 815)).rotate(23, expand=True)
     frame = load_image("support/0.png")
     frame.paste(img, (-172, -17), below=True)
     return frame.save_jpg()
@@ -267,7 +268,8 @@ def loading(img: BuildImage = UserImg(), arg=NoArg()):
     h1 = img_big.height
     mask = BuildImage.new("RGBA", img_big.size, (0, 0, 0, 64))
     icon = load_image("loading/icon.png")
-    img_big.paste(mask, alpha=True).paste(icon, (200, int(h1 / 2) - 50), alpha=True)
+    img_big.paste(mask, alpha=True).paste(
+        icon, (200, int(h1 / 2) - 50), alpha=True)
 
     def make(img: BuildImage) -> BuildImage:
         img_small = img.resize_width(100)
@@ -429,7 +431,8 @@ def police(img: BuildImage = UserImg(), arg=NoArg()):
 
 
 def police1(img: BuildImage = UserImg(), arg=NoArg()):
-    img = img.convert("RGBA").resize((60, 75), keep_ratio=True).rotate(16, expand=True)
+    img = img.convert("RGBA").resize(
+        (60, 75), keep_ratio=True).rotate(16, expand=True)
     frame = load_image("police/1.png")
     frame.paste(img, (37, 291), below=True)
     return frame.save_jpg()
@@ -480,7 +483,8 @@ def ask(user: UserInfo = User(), arg: str = Arg()):
 
     sep_w = 30
     sep_h = 80
-    frame = BuildImage.new("RGBA", (img_w + sep_w * 2, img_h + sep_h * 2), "white")
+    frame = BuildImage.new(
+        "RGBA", (img_w + sep_w * 2, img_h + sep_h * 2), "white")
     try:
         frame.draw_text(
             (sep_w, 0, img_w + sep_w, sep_h),
@@ -541,7 +545,8 @@ def wallpaper(img: BuildImage = UserImg(), arg=NoArg()):
 
 def china_flag(img: BuildImage = UserImg(), arg=NoArg()):
     frame = load_image("china_flag/0.png")
-    frame.paste(img.convert("RGBA").resize(frame.size, keep_ratio=True), below=True)
+    frame.paste(img.convert("RGBA").resize(
+        frame.size, keep_ratio=True), below=True)
     return frame.save_jpg()
 
 
@@ -577,7 +582,8 @@ def make_friend(user: UserInfo = User(), arg: str = Arg()):
 
 def back_to_work(img: BuildImage = UserImg(), arg=NoArg()):
     frame = load_image("back_to_work/0.png")
-    img = img.convert("RGBA").resize((220, 310), keep_ratio=True, direction="north")
+    img = img.convert("RGBA").resize(
+        (220, 310), keep_ratio=True, direction="north")
     frame.paste(img.rotate(25, expand=True), (56, 32), below=True)
     return frame.save_jpg()
 
@@ -600,7 +606,8 @@ def follow(user: UserInfo = User(), arg: str = Arg()):
     if text_width >= 1000:
         return NAME_TOO_LONG
 
-    frame = BuildImage.new("RGBA", (300 + text_width + 50, 300), (255, 255, 255, 0))
+    frame = BuildImage.new(
+        "RGBA", (300 + text_width + 50, 300), (255, 255, 255, 0))
     frame.paste(img, (50, 50), alpha=True)
     frame.paste(name_img, (300, 135 - name_img.height), alpha=True)
     frame.paste(follow_img, (300, 145), alpha=True)
@@ -642,11 +649,14 @@ def my_friend(
         box.paste(corner2, (0, box_h - 75))
         box.paste(corner3, (text_w + 70, 0))
         box.paste(corner4, (text_w + 70, box_h - 75))
-        box.paste(BuildImage.new("RGBA", (text_w, box_h - 40), "white"), (70, 20))
-        box.paste(BuildImage.new("RGBA", (text_w + 88, box_h - 150), "white"), (27, 75))
+        box.paste(BuildImage.new(
+            "RGBA", (text_w, box_h - 40), "white"), (70, 20))
+        box.paste(BuildImage.new(
+            "RGBA", (text_w + 88, box_h - 150), "white"), (27, 75))
         box.paste(text_img, (70, 17 + (box_h - 40 - text_h) // 2), alpha=True)
 
-        dialog = BuildImage.new("RGBA", (box.width + 130, box.height + 60), "#eaedf4")
+        dialog = BuildImage.new(
+            "RGBA", (box.width + 130, box.height + 60), "#eaedf4")
         dialog.paste(img, (20, 20), alpha=True)
         dialog.paste(box, (130, 60), alpha=True)
         dialog.paste(label, (160, 25))
@@ -698,7 +708,8 @@ def coupon(user: UserInfo = User(), arg: str = Arg()):
         return TEXT_TOO_LONG
 
     frame = load_image("coupon/0.png")
-    img = user.img.convert("RGBA").circle().resize((60, 60)).rotate(22, expand=True)
+    img = user.img.convert("RGBA").circle().resize(
+        (60, 60)).rotate(22, expand=True)
     frame.paste(img, (164, 85), alpha=True)
     frame.paste(text_img.rotate(22, expand=True), (94, 108), alpha=True)
     return frame.save_jpg()
@@ -757,7 +768,8 @@ def funny_mirror(img: BuildImage = UserImg(), arg=NoArg()):
     borders = [25, 52, 67, 83, 97, 108, 118, 128, 138, 148]
     for i in range(10):
         new_size = 500 - borders[i] * 2
-        new_img = img.distort((coeffs[i], 0, 0, 0)).resize_canvas((new_size, new_size))
+        new_img = img.distort((coeffs[i], 0, 0, 0)).resize_canvas(
+            (new_size, new_size))
         frames.append(new_img.resize((500, 500)).image)
     frames.extend(frames[::-1])
     return save_gif(frames, 0.05)
@@ -771,7 +783,8 @@ def love_you(img: BuildImage = UserImg(), arg=NoArg()):
         heart = load_image(f"love_you/{i}.png")
         frame = BuildImage.new("RGBA", heart.size, "white")
         x, y, w, h = locs[i]
-        frame.paste(img.resize((w, h)), (x, y), alpha=True).paste(heart, alpha=True)
+        frame.paste(img.resize((w, h)), (x, y),
+                    alpha=True).paste(heart, alpha=True)
         frames.append(frame.image)
     return save_gif(frames, 0.2)
 
@@ -1105,7 +1118,8 @@ def suck(img: BuildImage = UserImg(), arg=NoArg()):
         bg = load_image(f"suck/{i}.png")
         frame = BuildImage.new("RGBA", bg.size, "white")
         x, y, w, h = locs[i]
-        frame.paste(img.resize((w, h)), (x, y), alpha=True).paste(bg, alpha=True)
+        frame.paste(img.resize((w, h)), (x, y),
+                    alpha=True).paste(bg, alpha=True)
         frames.append(frame.image)
     return save_gif(frames, 0.08)
 
@@ -1230,7 +1244,8 @@ def marriage(img: BuildImage = UserImg(), arg=NoArg()):
 
 
 def painter(img: BuildImage = UserImg(), arg=NoArg()):
-    img = img.convert("RGBA").resize((240, 345), keep_ratio=True, direction="north")
+    img = img.convert("RGBA").resize(
+        (240, 345), keep_ratio=True, direction="north")
     frame = load_image("painter/0.png")
     frame.paste(img, (125, 91), below=True)
     return frame.save_jpg()
