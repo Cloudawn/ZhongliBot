@@ -16,8 +16,7 @@ from nonebot.exception import ActionFailed, FinishedException
 from nonebot.internal.matcher import Matcher
 from src.modules.user_info import UserInfo
 from src.utils.config import config
-from src.utils.function import (MessageEvent_to_text, Replace,
-                                custom_forward_msg)
+from src.utils.function import MessageEvent_to_text, Replace
 # from nonebot.internal.matcher import Matcher
 from src.utils.log import logger
 from src.utils.rule import all_nickname
