@@ -104,7 +104,6 @@ venv.bak/
 
 # mkdocs documentation
 /site
-
 # mypy
 .mypy_cache/
 .dmypy.json
@@ -115,13 +114,14 @@ dmypy.json
 
 # dir 不需要提交的目录
 /db
-​
+/resources/temp
+
 # file 不需要提交的文件
 config.yml
 coc_cards.json
 group_mute_data.json
 bank.json
-​
+
 # log 不需要提交的任意包含后缀名为log的文件
 *.log
 ​

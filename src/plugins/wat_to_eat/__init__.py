@@ -21,7 +21,7 @@ Export.default_status = True
 
 
 _lmt = DailyNumberLimiter(5)
-imgpath = f"{config.bot_path}src/plugins/wat_to_eat/foods"
+imgpath = f"{config.bot_path}resources/foods"
 
 today_food = on_regex(
     r'^(今天|[早中午晚][上饭餐午]|夜宵)吃(什么|啥|点啥)', priority=28, block=True)

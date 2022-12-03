@@ -12,9 +12,9 @@ from .depends import *
 from .download import load_image
 from .utils import UserInfo, make_jpg_or_gif, save_gif, translate
 
-TEXT_TOO_LONG = "文字太长了哦，改短点再试吧~"
-NAME_TOO_LONG = "名字太长了哦，改短点再试吧~"
-REQUIRE_NAME = "找不到名字，加上名字再试吧~"
+TEXT_TOO_LONG = "文字太长了，请改短一些"
+NAME_TOO_LONG = "名字太长了，请改短一些"
+REQUIRE_NAME = "我没有找到名字，加上名字再试试？"
 REQUIRE_ARG = "该表情至少需要一个参数"
 
 
